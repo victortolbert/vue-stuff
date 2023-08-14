@@ -1,7 +1,13 @@
 module.exports = {
   root: true,
-  extends: ['@antfu', 'plugin:storybook/recommended'],
+  extends: [
+    '@antfu',
+    '@unocss',
+    'plugin:storybook/recommended',
+  ],
   rules: {
+    'no-alert': 'off',
+    'no-console': 'off',
     'unused-imports/no-unused-vars': 'off',
   },
   overrides: [
