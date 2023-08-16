@@ -1,0 +1,25 @@
+###
+
+GET https://jsonplaceholder.typicode.com/posts
+
+####
+
+GET https://jsonplaceholder.typicode.com/posts/1
+
+###
+
+GET /todos HTTP/1.1
+Host: dummyjson.com
+
+###x
+
+GET http://localhost:3006/projects
+
+###
+
+GET http://localhost:3006/project-statuses
+
+###
+
+POST http://localhost:3006/projects HTTP/1.1
+content-type: application/json

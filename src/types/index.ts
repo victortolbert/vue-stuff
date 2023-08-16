@@ -1,29 +1,10 @@
+import { type ViteSSGContext } from 'vite-ssg'
+
+export type UserModule = (ctx: ViteSSGContext) => void
+
 export interface Attendee {
   id: string
   name: string
-}
-
-export interface Event {
-  id: number
-  category: string
-  title: string
-  description: string
-  location: string
-  date: string
-  time: string
-  organizer: string
-  attendees: Attendee[]
-}
-
-export interface PaymentProfile {
-  PaymentAmount?: number
-  BillTo: BillTo
-  Payment: Payment
-  DefaultPaymentProfile?: boolean
-  CustomerProfileId?: string | number
-  CustomerPaymentProfileId?: string | number
-  OriginalNetworkTransId?: string
-  OriginalAuthAmount?: string
 }
 
 export interface BillTo {
@@ -39,8 +20,10 @@ export interface BillTo {
   Country?: string
 }
 
-export interface Payment {
-  CreditCard: CreditCard
+export interface BasicFilter {
+  value: string
+  keys: string[]
+  exact?: boolean
 }
 
 export interface CreditCard {
@@ -51,4 +34,60 @@ export interface CreditCard {
   CardCode?: string | null
   CardType?: string
   IssuerNumber?: string | number
+}
+
+export interface CustomFilter {
+  value?: unknown
+  custom: (value: any, row: Record<string, any>) => boolean
+}
+
+export type CustomFilterFunction =
+  (value: any, row: Record<string, any>) => boolean
+
+export type CustomSort = ((a: any, b: any, sortOrder: SortOrder) => number)
+
+export interface Event {
+  id: number
+  category: string
+  title: string
+  description: string
+  location: string
+  date: string
+  time: string
+  organizer: string
+  attendees: Attendee[]
+}
+
+export interface Payment {
+  CreditCard: CreditCard
+}
+
+export interface PaymentProfile {
+  PaymentAmount?: number
+  BillTo: BillTo
+  Payment: Payment
+  DefaultPaymentProfile?: boolean
+  CustomerProfileId?: string | number
+  CustomerPaymentProfileId?: string | number
+  OriginalNetworkTransId?: string
+  OriginalAuthAmount?: string
+}
+
+export interface Post {
+  userId: number
+  id: number
+  title: string
+  body: string
+}
+
+export enum SortOrder {
+  DESC = -1,
+  NONE = 0,
+  ASC = 1,
+}
+
+interface TableState {
+  rows: any[]
+  rowsPrePagination: any[]
+  selectedRows: any[]
 }
