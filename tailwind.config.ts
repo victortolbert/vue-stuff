@@ -2,8 +2,10 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import headlessUi from '@headlessui/tailwindcss'
 import heroPatterns from 'tailwind-heropatterns'
 import aspectRatio from '@tailwindcss/aspect-ratio'
-import tailwindForms from '@tailwindcss/forms'
+
+// import tailwindForms from '@tailwindcss/forms'
 import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
+import formKitTailwind from '@formkit/themes/tailwindcss'
 
 import type { Config } from 'tailwindcss'
 
@@ -169,13 +171,14 @@ export default <Partial<Config>>{
 
       // The foreground opacity
       opacity: {
-        default: '0.4',
+        default: 0.4,
         100: '1.0',
       },
     }),
-    tailwindForms({
-      // strategy: 'base', // only generate global styles
-      strategy: 'class', // only generate classes
-    }),
+    // tailwindForms({
+    //   strategy: 'base', // only generate global styles
+    //   // strategy: 'class', // only generate classes
+    // }),
+    formKitTailwind,
   ],
 }

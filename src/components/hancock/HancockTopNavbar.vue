@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-import { RouterLink } from 'vue-router'
-import UContainer from '~/components/Container.vue'
 
 const assetsURL = '/assets'
 
@@ -13,11 +11,6 @@ const user = reactive({
 
 const links = ref([
   { name: 'Home', path: '/' },
-  { name: 'Contact', path: '/contact' },
-  { name: 'Playground', path: '/playground' },
-  { name: 'Test', path: '/test' },
-  { name: 'Login', path: '/login' },
-  { name: 'Signin', path: '/signin' },
 ])
 
 const openMobileMenu = ref(false)

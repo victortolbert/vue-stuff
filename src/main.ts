@@ -1,33 +1,36 @@
-import './assets/style.css'
-
-// import '@unocss/reset/tailwind.css'
-// import './assets/main.css'
-// import 'uno.css'
-// import 'virtual:unocss-devtools'
-
 import process from 'node:process'
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+
+import { ViteSSG } from 'vite-ssg'
 import { Icon } from '@iconify/vue'
+import Preview from 'vite-plugin-vue-component-preview/client'
 
 import App from './App.vue'
-import router from './router'
-
+import './assets/style.css'
 import { worker } from './mocks/browser'
+import type { UserModule } from './types'
 
-function prepare() {
-  if (process.env.NODE_ENV === 'development')
-    return worker.start()
+import routes from '~pages'
 
-  return Promise.resolve()
-}
+if (process.env.NODE_ENV === 'development')
+  worker.start()
 
-const app = createApp(App)
+export const createApp: any = ViteSSG(
+  App,
+  { routes, base: import.meta.env.BASE_URL },
+  (ctx) => {
+    Object.values(import.meta.glob<{ install: UserModule }>('./modules/*.ts', { eager: true }))
+      .forEach(i => i.install?.(ctx))
 
-app.use(createPinia())
-app.use(router)
-app.component('Icon', Icon)
+    ctx.app.component('Icon', Icon)
+    ctx.app.use(Preview)
+  },
+)
 
-prepare().then(() => {
-  app.mount('#app')
-})
+// export const createApp: any = ViteSSG(
+//   App,
+//   { routes },
+//   async (ctx) => {
+//     // install all modules under `modules/`
+//     await Promise.all(Object.values(import.meta.globEager('./modules/*.ts')).map(i => i.install?.(ctx)))
+//   },
+// )

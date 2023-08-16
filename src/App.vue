@@ -1,8 +1,21 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import HancockTopNavbar from './components/hancock/HancockTopNavbar.vue'
-import TheFooter from './components/TheFooter.vue'
-import UContainer from './components/Container.vue'
+useHead({
+  title: 'Vue Stuff',
+  meta: [
+    { name: 'description', content: 'Some Vue Stuff' },
+    {
+      name: 'theme-color',
+      content: () => isDark.value ? '#00aba9' : '#ffffff',
+    },
+  ],
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/svg+xml',
+      href: () => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg',
+    },
+  ],
+})
 </script>
 
 <template>
@@ -30,6 +43,9 @@ label {
 }
 .form-group {
   @apply grid gap-1;
+}
+.form-label {
+  display: block;
 }
 .form-input {
   @apply block w-full rounded-md border-gray-300 bg-gray-50;
@@ -62,4 +78,7 @@ input[type='radio'] {}
 select {}
 select[multiple] {}
 textarea {} */
+th {
+  @apply text-left text-xs font-medium text-gray-500 uppercase tracking-wider;
+}
 </style>
