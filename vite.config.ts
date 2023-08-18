@@ -10,7 +10,8 @@ import { defineConfig, loadEnv } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import VueJsx from '@vitejs/plugin-vue-jsx'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
-import VueDevTools from 'vite-plugin-vue-devtools'
+
+// import VueDevTools from 'vite-plugin-vue-devtools'
 import Preview from 'vite-plugin-vue-component-preview'
 import Inspect from 'vite-plugin-inspect'
 import generateSitemap from 'vite-ssg-sitemap'
@@ -21,7 +22,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 import Markdown from 'unplugin-vue-markdown/vite'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
-import WebfontDownload from 'vite-plugin-webfont-dl'
+
+// import WebfontDownload from 'vite-plugin-webfont-dl'
 
 export default ({ mode }: any) => {
   const { VITE_PORT } = loadEnv(mode, process.cwd())
@@ -68,8 +70,8 @@ export default ({ mode }: any) => {
     },
 
     plugins: [
-      WebfontDownload(),
-      VueDevTools(),
+      // WebfontDownload(),
+      // VueDevTools(),
       Inspect(),
       Preview(),
       Vue({
@@ -112,7 +114,7 @@ export default ({ mode }: any) => {
         dts: 'src/components.d.ts',
         directoryAsNamespace: true,
         collapseSamePrefixes: true,
-        globalNamespaces: ['app', 'content', 'icons'],
+        globalNamespaces: ['app', 'content', 'forms', 'icons', 'logos'],
         customLoaderMatcher: path => path.endsWith('.md'),
       }),
 

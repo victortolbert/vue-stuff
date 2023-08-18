@@ -1,14 +1,17 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
+const title = ref('')
+
+title.value = t('pages.home')
+
 useHead({
-  title: t('pages.home'),
+  title: () => title.value,
 })
 </script>
 
 <template>
-  <main>
-    <FormKit type="text" help="Your full name" />
-    <TheWelcome />
-  </main>
+  <section>
+    <ExampleCreditCardForm />
+  </section>
 </template>

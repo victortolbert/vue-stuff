@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import RandomImage from '~/components/RandomImage.vue'
-
 const { t } = useI18n()
 </script>
 

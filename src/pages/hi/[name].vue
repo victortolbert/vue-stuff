@@ -40,11 +40,12 @@ watchEffect(() => {
   </template>
 
   <div>
-    <button
-      m="3 t6" text-sm btn
+    <FormKit
+      id="button"
+      name="button"
+      :label="t('button.back')"
+      type="button"
       @click="router.back()"
-    >
-      {{ t('button.back') }}
-    </button>
+    />
   </div>
 </template>

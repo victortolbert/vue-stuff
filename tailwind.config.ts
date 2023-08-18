@@ -2,6 +2,7 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 import headlessUi from '@headlessui/tailwindcss'
 import heroPatterns from 'tailwind-heropatterns'
 import aspectRatio from '@tailwindcss/aspect-ratio'
+import containerQueries from '@tailwindcss/container-queries'
 
 // import tailwindForms from '@tailwindcss/forms'
 import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
@@ -13,6 +14,7 @@ export default <Partial<Config>>{
   content: [
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
+    './src/formkit.config.ts',
   ],
   theme: {
     extend: {
@@ -175,6 +177,7 @@ export default <Partial<Config>>{
         100: '1.0',
       },
     }),
+    containerQueries,
     // tailwindForms({
     //   strategy: 'base', // only generate global styles
     //   // strategy: 'class', // only generate classes
