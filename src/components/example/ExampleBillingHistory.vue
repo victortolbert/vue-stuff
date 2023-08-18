@@ -72,7 +72,7 @@
                     >
                       <a
                         href="#"
-                        class="text-primary-600 hover:text-primary-900 dark:text-primary-300 hover:dark:text-primary-100"
+                        class="text-primary-600 dark:text-primary-300 hover:text-primary-900 hover:dark:text-primary-100"
                       >View receipt</a>
                     </td>
                   </tr>

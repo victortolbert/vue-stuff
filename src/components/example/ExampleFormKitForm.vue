@@ -15,7 +15,7 @@
         ?
         <span>{{ context.help }}</span>
       </template>
-      <template #help></template>
+      <template #help />
     </FormKit>
     <FormKit type="select" />
     <FormKit type="textarea" />

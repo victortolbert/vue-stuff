@@ -193,10 +193,10 @@
     "zod": "^3.22.1"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
+    "pre-commit": "npm run lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "msw": {
     "workerDirectory": "public"

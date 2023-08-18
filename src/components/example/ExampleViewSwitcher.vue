@@ -33,11 +33,11 @@
             type="search"
             placeholder="Search"
             required
-            class="focus:border-primary-500 focus:ring-primary-500 block w-full border border-gray-300 rounded bg-gray-50 p-4 pl-10 text-sm text-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-50"
+            class="block w-full border border-gray-300 rounded bg-gray-50 p-4 pl-10 text-sm text-gray-900 dark:border-gray-700 focus:border-primary-500 dark:bg-gray-800 dark:text-gray-50 focus:ring-primary-500"
           >
           <button
             type="button"
-            class="bg-primary-700 focus:ring-primary-300 hover:bg-primary-800 absolute bottom-2.5 right-2.5 rounded px-4 py-2 text-sm font-medium text-white focus:outline-none focus:ring-4"
+            class="absolute bottom-2.5 right-2.5 rounded bg-primary-700 px-4 py-2 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
           >
             Search
           </button>

@@ -17,7 +17,7 @@ async function handleSubmit(data) {
       :value="formData"
       @submit="handleSubmit"
     >
-      <template #default="{ state }">
+      <template #default>
         <h1>Login</h1>
         <FormKit
           validation="(500)username_is_unique"

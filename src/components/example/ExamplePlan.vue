@@ -1,4 +1,5 @@
-<script setup>
+<script setup lang="ts">
+const selected = ref(true)
 </script>
 
 <template>
@@ -29,7 +30,7 @@
                     <input
                       name="pricing_plan"
                       type="radio"
-                      class="text-primary-500 h-4 w-4 cursor-pointer border-gray-300 dark:border-gray-700 focus:ring-gray-900"
+                      class="h-4 w-4 cursor-pointer border-gray-300 text-primary-500 dark:border-gray-700 focus:ring-gray-900"
                       aria-describedby="plan-option-pricing-0 plan-option-limit-0"
                     >
                     <span class="ml-3 font-medium text-gray-900 dark:text-gray-100">Startup</span>
@@ -57,7 +58,7 @@
                 <!-- On: "", Off: "" -->
                 <div
                   :class="[
-                    true
+                    selected
                       ? 'bg-primary-50 border-primary-200 dark:bg-primary-950 z-10'
                       : 'border-gray-200 dark:border-gray-800',
                   ]"
@@ -67,7 +68,7 @@
                     <input
                       name="pricing_plan"
                       type="radio"
-                      class="text-primary-500 focus:ring-primary-500 h-4 w-4 cursor-pointer border-gray-300 dark:border-gray-700"
+                      class="h-4 w-4 cursor-pointer border-gray-300 text-primary-500 dark:border-gray-700 focus:ring-primary-500"
                       aria-describedby="plan-option-pricing-1 plan-option-limit-1"
                       checked
                     >
@@ -101,7 +102,7 @@
                     <input
                       name="pricing_plan"
                       type="radio"
-                      class="text-primary-500 h-4 w-4 cursor-pointer border-gray-300 dark:border-gray-700 focus:ring-gray-900"
+                      class="h-4 w-4 cursor-pointer border-gray-300 text-primary-500 dark:border-gray-700 focus:ring-gray-900"
                       aria-describedby="plan-option-pricing-2 plan-option-limit-2"
                     >
                     <span class="ml-3 font-medium text-gray-900 dark:text-gray-100">Enterprise</span>
@@ -133,7 +134,7 @@
               type="button"
               aria-pressed="true"
               aria-labelledby="toggleLabel"
-              class="focus:ring-primary-500 relative h-6 w-11 inline-flex flex-shrink-0 cursor-pointer border-2 border-transparent rounded-full bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2"
+              class="relative h-6 w-11 inline-flex flex-shrink-0 cursor-pointer border-2 border-transparent rounded-full bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             >
               <span class="sr-only">Use setting</span>
               <!-- On: "translate-x-5", Off: "translate-x-0" -->
@@ -152,7 +153,7 @@
         <div class="bg-gray-50 px-4 py-3 text-right dark:bg-gray-800 sm:px-6">
           <button
             type="submit"
-            class="focus:ring-primary-500 bg-primary-600 hover:bg-primary-700 inline-flex justify-center border border-transparent rounded-md px-4 py-2 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2"
+            class="inline-flex justify-center border border-transparent rounded-md bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
           >
             Save
           </button>
