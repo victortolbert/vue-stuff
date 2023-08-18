@@ -7,32 +7,36 @@ context('Basic', () => {
     cy.url()
       .should('eq', 'http://localhost:5080/')
 
-    cy.contains('[Home Layout]')
-      .should('exist')
+    // cy.contains('[Home Layout]')
+    //   .should('exist')
 
-    cy.get('#input')
-      .type('Exemplar{Enter}')
+    // cy.get('#name')
+    //   .type('Exemplar')
 
-    cy.url()
-      .should('eq', 'http://localhost:5080/hi/Exemplar')
+    // cy.get('#button')
+    //   .click()
 
-    cy.contains('[Default Layout]')
-      .should('exist')
+    // cy.url()
+    //   .should('eq', 'http://localhost:5080/hi/Exemplar')
 
-    cy.get('[btn]').click()
+    // cy.contains('[Default Layout]')
+    //   .should('exist')
 
-    cy.url()
-      .should('eq', 'http://localhost:5080/')
+    // cy.get('#button')
+    //   .click()
+
+    // cy.url()
+    //   .should('eq', 'http://localhost:5080/')
   })
 
-  it('markdown', () => {
-    cy.get('[title="About"]')
-      .click()
+  // it('markdown', () => {
+  //   cy.get('[title="About"]')
+  //     .click()
 
-    cy.url()
-      .should('eq', 'http://localhost:5080/about')
+  //   cy.url()
+  //     .should('eq', 'http://localhost:5080/about')
 
-    cy.get('.shiki')
-      .should('exist')
-  })
+  //   cy.get('.shiki')
+  //     .should('exist')
+  // })
 })

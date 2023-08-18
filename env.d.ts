@@ -4,3 +4,4 @@
 /// <reference types="@intlify/unplugin-vue-i18n/messages" />
 
 declare module 'v-calendar'
+declare module 'vue-credit-card-validation'

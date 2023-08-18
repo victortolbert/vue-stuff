@@ -1,5 +1,7 @@
 ---
 title: About
+meta:
+  title: About
 ---
 
 

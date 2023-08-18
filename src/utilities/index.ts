@@ -147,3 +147,7 @@ console.log(sum({ a: 1, b: 2 }))
 export function uuid() {
   return Math.random().toString(16).slice(2)
 }
+
+export function wait(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
