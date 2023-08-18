@@ -8,10 +8,10 @@
         <!-- Completed Step -->
         <a
           href="#"
-          class="group border-primary-600 hover:border-primary-800 flex flex-col border-l-4 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
+          class="group flex flex-col border-l-4 border-primary-600 py-2 pl-4 md:border-l-0 md:border-t-4 hover:border-primary-800 md:pb-0 md:pl-0 md:pt-4"
         >
           <span
-            class="text-primary-600 group-hover:text-primary-800 text-xs font-semibold uppercase"
+            class="text-xs font-semibold uppercase text-primary-600 group-hover:text-primary-800"
           >Step 1</span>
           <span class="text-sm font-medium">Job details</span>
         </a>
@@ -21,10 +21,10 @@
         <!-- Current Step -->
         <a
           href="#"
-          class="border-primary-600 flex flex-col border-l-4 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
+          class="flex flex-col border-l-4 border-primary-600 py-2 pl-4 md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4"
           aria-current="step"
         >
-          <span class="text-primary-600 text-xs font-semibold uppercase">Step 2</span>
+          <span class="text-xs font-semibold uppercase text-primary-600">Step 2</span>
           <span class="text-sm font-medium">Application form</span>
         </a>
       </li>

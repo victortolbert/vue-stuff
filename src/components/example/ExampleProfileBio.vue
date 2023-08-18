@@ -19,7 +19,7 @@
             type="text"
             name="username"
             autocomplete="username"
-            class="focus:ring-primary-500 focus:border-primary-500 block min-w-0 w-full flex-grow border border-gray-300 rounded-none rounded-r-md dark:border-gray-600 dark:bg-gray-800 sm:text-sm"
+            class="block min-w-0 w-full flex-grow border border-gray-300 rounded-none rounded-r-md dark:border-gray-600 focus:border-primary-500 dark:bg-gray-800 sm:text-sm focus:ring-primary-500"
             value="vtolbert"
           >
         </div>
@@ -52,7 +52,7 @@
           </div>
           <div class="ml-5 rounded-md shadow-sm">
             <div
-              class="group focus-within:ring-primary-500 relative flex items-center justify-center border border-gray-300 rounded-md px-3 py-2 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-offset-2"
+              class="group relative flex items-center justify-center border border-gray-300 rounded-md px-3 py-2 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500"
             >
               <label
                 for="user_photo"

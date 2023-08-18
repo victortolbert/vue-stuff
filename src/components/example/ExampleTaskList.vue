@@ -30,13 +30,13 @@ defineProps({
             <li class="relative pb-10">
               <!-- Complete Step -->
               <div
-                class="bg-primary-600 absolute left-4 top-4 mt-0.5 h-full w-0.5 -ml-px"
+                class="absolute left-4 top-4 mt-0.5 h-full w-0.5 bg-primary-600 -ml-px"
                 aria-hidden="true"
               />
               <a href="#" class="group relative flex items-start">
                 <span class="h-9 flex items-center">
                   <span
-                    class="bg-primary-600 group-hover:bg-primary-800 relative z-10 h-8 w-8 flex items-center justify-center rounded-full"
+                    class="relative z-10 h-8 w-8 flex items-center justify-center rounded-full bg-primary-600 group-hover:bg-primary-800"
                   >
                     <!-- Heroicon name: check -->
                     <svg
@@ -76,16 +76,16 @@ defineProps({
               >
                 <span class="h-9 flex items-center" aria-hidden="true">
                   <span
-                    class="border-primary-600 relative z-10 h-8 w-8 flex items-center justify-center border-2 rounded-full bg-white"
+                    class="relative z-10 h-8 w-8 flex items-center justify-center border-2 border-primary-600 rounded-full bg-white"
                   >
                     <span
-                      class="bg-primary-600 h-2.5 w-2.5 rounded-full"
+                      class="h-2.5 w-2.5 rounded-full bg-primary-600"
                     />
                   </span>
                 </span>
                 <span class="ml-4 min-w-0 flex flex-col">
                   <span
-                    class="text-primary-600 text-xs font-semibold tracking-wide uppercase"
+                    class="text-xs font-semibold tracking-wide uppercase text-primary-600"
                   >Training Module 2</span>
                   <span class="text-sm text-gray-500">Cursus semper viverra facilisis et et some more.</span>
                 </span>
