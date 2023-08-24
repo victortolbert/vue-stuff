@@ -1,8 +1,7 @@
-﻿export class AdjusterCounts {
+export class AdjusterCounts {
+  public ClaimCount: number | null = null
 
-    public ClaimCount: number | null = null;
+  public ProjectStatus: string = ''
 
-    public ProjectStatus: string = '';
-
-    public ProjectStatusId: number | null = null;
+  public ProjectStatusId: number | null = null
 }
