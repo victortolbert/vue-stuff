@@ -1,0 +1,100 @@
+﻿@using Exemplar.Web.Models;
+@{
+    ViewData["Title"] = "Customer Portal";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*Import ViewData/Cache*@
+@await Html.PartialAsync("~/Views/Shared/_ViewDataImport.cshtml")
+@Html.Hidden("googleMapsApiKey", ViewData["GoogleMapsApiKey"].ToString())
+@Html.Hidden("roleId", Convert.ToInt32(ViewData["RoleId"]))
+
+
+<template id="portal-index">
+    <div class="adjuster-portal">
+        <div v-if="canRead">
+            <div class="flex flex-col h-screen bg-primary-100">
+
+                @await Html.PartialAsync("_Header.cshtml")
+
+                <main class="flex-1 mt-4 sm:px-8 sm:mt-20">
+                    <article id="adjuster-claims">
+
+                        @await Html.PartialAsync("_PageTitle.cshtml")
+
+                        <div class="mt-2">
+
+                            @await Html.PartialAsync("_CardView.cshtml")
+
+                            <section id="grid-view" class="hidden p-8 overflow-auto bg-white shadow lg:block sm:rounded">
+                                <grid :model="gridModel"
+                                      ref="gridRef"
+                                      @@downloadmenuopen="onDownloadMenuOpen($event)"></grid>
+                            </section>
+
+                        </div>
+                    </article>
+
+                    <div class="grid grid-cols-12 gap-2 mt-2 mb-8 place-items-stretch">
+
+                        @await Html.PartialAsync("_ClaimSnapshot.cshtml")
+
+                        <section v-if="HasPermissions(masterPermissionType.Read, exemplarFeatureEnum.Calendar)" id="adjuster-calendar" class="p-2 bg-white shadow sm:rounded col-span-full lg:col-span-3">
+                            <div>
+                                <b-button @@click=" onCalendarChange({value: ''})">
+                                    Reset Filters
+                                </b-button>
+                            </div>
+                            <br />
+                            <calendar ref="kendocal" :value="myDate" v-on:change="onCalendarChange" />
+                        </section>
+
+                        <section v-show="mapMode" id="adjuster-map" class="bg-white border shadow sm:rounded col-span-full lg:col-span-7">
+                            <google-map-component :apikey="googleMapsApiKey"
+                                                  :center="[36.1, -80.25]"
+                                                  :markers="mapMarkers"
+                                                  :zoom="5"></google-map-component>
+                        </section>
+                        <section v-show="!mapMode" id="adjuster-schedule" class="bg-white border shadow sm:rounded col-span-full lg:col-span-7">
+                            <scheduler v-if="ready"
+                                       :data-items="scheduleData"
+                                       :data-route="schedulerDataRoute"
+                                       :date="new Date(`${schedulerDate}T${new Date().toISOString().split('T')[1]}`)"
+                                       :is-active="!mapMode"
+                                       :link-callback="GetDetails"
+                                       @@datareadsuccess="SetScheduleData"
+                                       @@viewchange="onSchedulerViewChange"></scheduler>
+                        </section>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div v-else class="px-8 mt-8" style="padding: 0 2rem">
+            <page-status code="401" title="Unauthorized">
+                You do not have permissions to view this page.
+            </page-status>
+        </div>
+
+        
+        @await Html.PartialAsync("_ProfileModal.cshtml")
+        <adjuster-claim-details-component :route="detailsRoute"
+                                          :project-id="selectedProjectId"
+                                          :show-claim-details="showClaimDetails"></adjuster-claim-details-component>
+    </div>
+</template>
+
+@await Html.PartialAsync("~/Views/Shared/Grid/_GridTemplate.cshtml")
+@await Html.PartialAsync("~/Views/Shared/Grid/_GridCheckboxCellTemplate.cshtml")
+@await Html.PartialAsync("~/Views/Shared/_GoogleMapTemplate.cshtml")
+@await Html.PartialAsync("~/Areas/Portal/Views/Portal/_DownloadMenu.cshtml")
+@await Html.PartialAsync("~/Areas/Portal/Views/Portal/_Scheduler.cshtml")
+@await Html.PartialAsync("_AdjusterClaimDetailsTemplate.cshtml")
+
+
+
+@*<style>
+    .k-filter-row > th:not(:first-child) {
+        display: none;
+    }
+</style>*@

@@ -1,0 +1,14 @@
+{
+  "updateCustomerProfileRequest": {
+    "merchantAuthentication": {
+      "name": "string",
+      "transactionKey": "string"
+    },
+    "profile": {
+      "merchantCustomerId": "string",
+      "description": "string",
+      "email": "string",
+      "customerProfileId": "string"
+    }
+  }
+}

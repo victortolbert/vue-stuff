@@ -1,0 +1,11 @@
+{
+  "getCustomerPaymentProfileRequest": {
+    "merchantAuthentication": {
+      "name": "string",
+      "transactionKey": "string"
+    },
+    "customerProfileId": "string",
+    "customerPaymentProfileId": "string",
+    "includeIssuerInfo": "string"
+  }
+}

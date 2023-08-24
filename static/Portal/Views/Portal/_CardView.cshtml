@@ -1,0 +1,60 @@
+﻿<section id="card-view" class="lg:hidden">
+    <div class="card-view-container">
+        <div v-for="claim in model" class="rounded flex flex-col h-full shadow bg-white border-gray-200" style="height: 28rem">
+            <header class="h-card-header mt-4">
+                <div class="flex px-6 items-center justify-between">
+                    <h3 class="flex font-medium space-x-2 leading-5 items-center">
+                        <span>Claim: {{ claim.ClaimNumber }}</span>
+                    </h3>
+                    <button type="button" v-on:click="ShowEditForm(claim.Id,GetDetailsSuccessCallback)">
+                        <i class="far fa-edit"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main -->
+            <div class="border-t flex-1 px-6 text-gray-500 overflow-y-auto card-body">
+                <div class="flex mt-4 text-gray-500 justify-between item-start">
+                    <div class="w-1/2">
+                        <div class="h-card-field">
+                            <label class="h-card-label whitespace-nowrap">Inspection Date</label>
+                            <span class="whitespace-nowrap">{{ claim.InspectionDateAndTime }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex mt-4 text-gray-500 justify-between item-start">
+                    <div class="w-1/2">
+                        <div class="h-card-field">
+                            <label class="h-card-label">Address</label>
+                            <span>{{ claim.Address }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex mt-4 text-gray-500 justify-between item-start">
+                    <div class="w-1/2">
+                        <div class="h-card-field">
+                            <label class="h-card-label whitespace-nowrap">Service Types</label>
+                            <span>{{ claim.ServiceTypes }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex mt-4 text-gray-500 justify-between item-start">
+                    <div class="w-1/2">
+                        <div class="h-card-field">
+                            <label class="h-card-label">Technician(s)</label>
+                            <span>{{ claim.TechnicianName }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="flex h-card-footer items-center justify-between">
+                <span id="is-active" :class="[ 'border rounded-full font-bold text-sm py-1 px-4 inline-block', { 'bg-green-100 text-green-800': claim.IsActive, 'bg-red-100 text-red-800': !claim.IsActive }]">
+                    Claim Status: {{ claim.ProjectStatus }}
+                </span>
+            </footer>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,60 @@
+﻿<template id="scheduler-template">
+    <div class="scheduler">
+        <div class="flex items-center justify-between scheduler-header">
+            <span class="text-2xl font-bold">{{ date.toLocaleDateString() }}</span>
+            <div class="flex items-center space-x-2">
+                <kendo-button @@click="onViewChange('Day')">Day</kendo-button>
+                <kendo-button @@click="onViewChange('Week')">Week</kendo-button>
+            </div>
+        </div>
+        <table class="scheduler" :key="key">
+            <thead v-if="viewType === 'Week'">
+                <tr>
+                    <th>&nbsp;</th>
+                    <th :colspan="dayColumns[0]">
+                        Sun, {{days[0].getMonth() + 1}}/{{days[0].getDate()}}
+                    </th>
+                    <th :colspan="dayColumns[1]">
+                        Mon, {{days[1].getMonth() + 1}}/{{days[1].getDate()}}
+                    </th>
+                    <th :colspan="dayColumns[2]">
+                        Tue, {{days[2].getMonth() + 1}}/{{days[2].getDate()}}
+                    </th>
+                    <th :colspan="dayColumns[3]">
+                        Wed, {{days[3].getMonth() + 1}}/{{days[3].getDate()}}
+                    </th>
+                    <th :colspan="dayColumns[4]">
+                        Thu, {{days[4].getMonth() + 1}}/{{days[4].getDate()}}
+                    </th>
+                    <th :colspan="dayColumns[5]">
+                        Fri, {{days[5].getMonth() + 1}}/{{days[5].getDate()}}
+                    </th>
+                    <th :colspan="dayColumns[6]">
+                        Sat, {{days[6].getMonth() + 1}}/{{days[6].getDate()}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(time, timeIdx) in timeSlots" :key="time.toString()">
+                    <td class="time-display"
+                        :rowspan="intervalsPerHour"
+                        v-if="!time.getMinutes()">
+                        {{ (time.getHours() + 11) % 12 + 1 }}:00 {{time.getHours() >= 12 ? "PM" : "AM"}}
+                    </td>
+                    @*<td v-else >&nbsp;</td>*@
+                    <td v-for="colIdx in totalDayColumns"
+                        v-if="getCellData(time, timeIdx, colIdx - 1).rowspan"
+                        :class="getCellData(time, timeIdx, colIdx - 1).cellClass"
+                        :colspan="getCellData(time, timeIdx, colIdx - 1).colspan"
+                        :rowspan="getCellData(time, timeIdx, colIdx - 1).rowspan"
+                        :style="getCellData(time, timeIdx, colIdx - 1).style || { }">
+                        <div class="flex flex-col">
+                            <a :href="getLinkUrl(getCellData(time, timeIdx, colIdx - 1).item)" @@click="onLinkClick($event, getCellData(time, timeIdx, colIdx - 1).item)">{{ getCellData(time, timeIdx, colIdx - 1).title }}</a> @*v-if .... && getCellData(time, timeIdx, colIdx).linkurl*@
+                            <span class="font-bold whitespace-nowrap">{{ getCellData(time, timeIdx, colIdx - 1).content || "&nbsp;"}}</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>

@@ -1,0 +1,19 @@
+﻿<section id="snapshot" class="sm:rounded bg-white col-span-full lg:col-span-2 shadow p-8">
+    <page-loading-indicator v-if="loading"></page-loading-indicator>
+    <div v-else>
+        <h3 class="font-medium"><i class="fas fa-binoculars"></i>&nbsp;Claims By Status <span v-if="projectStatusName.length>0">({{projectStatusName}})</span>  <span v-if="selectedDate">({{selectedDate}})</span></h3>
+        <ul class="list-disc list-inside mt-4">
+            <li v-for="count in adjusterCountModel">
+                {{count.ProjectStatus}}:
+                <button style="color:navy; font-weight:800; text-decoration:underline" v-on:click="onCountsClicked(count.ProjectStatusId, count.ProjectStatus)">
+                    <span> {{count.ClaimCount}}</span>
+                </button>
+            </li>
+            <li v-if="projectStatusName.length>0">
+                <button style="color:navy; font-weight:800; text-decoration:underline" v-on:click="onCountsClicked(0,'')">
+                    <span> Show All</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+</section>

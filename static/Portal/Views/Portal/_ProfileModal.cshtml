@@ -1,0 +1,136 @@
+﻿<div>
+    <b-modal ref="profileModal"
+             v-model="profileModal.open"
+             :no-close-on-backdrop='true'
+             :no-close-on-esc='true'
+             :title="profileModal.title"
+             ok-title="Ok"
+             v-on:hide="onHide"
+             v-on:ok.prevent="this.profileModal.open = false"
+             size="lg"
+             header-class="card-header">
+
+            <div>
+                <div class="mt-4">
+                    <label class="h-label">Name:</label> {{profileModal.data.FullName}}
+
+                </div>
+                <div class="mt-4">
+                    <label class="h-label">Company:</label> {{profileModal.data.CompanyName}}
+
+                </div>
+                <div class="mt-4">
+                    <label class="h-label">Email: </label> {{profileModal.data.PrimaryEmail}}
+
+                </div>
+            </div>
+            <div>
+                <div class="mt-4">
+                    <label class="h-label">Phone:</label> {{profileModal.data.PrimaryPhone}}
+                </div>
+            </div>
+
+
+            <validation-observer v-slot="{ invalid }">
+                <h4 class="mt-8 text-lg font-semibold">Billing and Payment Information</h4>
+
+                <form class="mt-8" action="" v-on:submit.prevent="onSubmit">
+                    <fieldset class="mt-8">
+                        <legend class="font-semibold">
+                            Billing Address
+                        </legend>
+
+                        <div class="grid mt-4">
+                            <h4 class="block text-sm font-medium text-gray-700 whitespace-nowrap">Cardholder Name</h4>
+                            <div class="grid gap-4 sm:grid-cols-2">
+                                <u-form-group label="" help="First Name">
+                                    <u-input v-model="form.PaymentProfile.BillTo.FirstName"></u-input>
+                                </u-form-group>
+                                <u-form-group label="" help="Last Name">
+                                    <u-input v-model="form.PaymentProfile.BillTo.LastName"></u-input>
+                                </u-form-group>
+                            </div>
+                        </div>
+
+                        <div class="mt-8">
+                            <div class="grid mt-4">
+                                <h4 class="block text-sm font-medium text-gray-700 whitespace-nowrap">Cardholder Address</h4>
+                                <div class="grid gap-4">
+                                    <u-form-group label="" help="Street Address">
+                                        <u-input v-model="form.PaymentProfile.BillTo.Address"></u-input>
+                                    </u-form-group>
+                                    @*<u-form-group label="Address Line 2">
+                                            <u-input v-model=""></u-input>
+                                        </u-form-group>*@
+                                    <div class="grid gap-4 sm:grid-cols-2">
+                                        <u-form-group label="" help="City">
+                                            <u-input v-model="form.PaymentProfile.BillTo.City"></u-input>
+                                        </u-form-group>
+                                        <u-form-group label="" help="State">
+                                            <u-input v-model="form.PaymentProfile.BillTo.State"></u-input>
+                                        </u-form-group>
+                                    </div>
+                                    <u-form-group label="" help="Zip Code" class="max-w-xs">
+                                        <u-input v-model="form.PaymentProfile.BillTo.Zip"></u-input>
+                                    </u-form-group>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="mt-8">
+                        <legend class="font-semibold">
+                            Payment Information
+                        </legend>
+
+                        <div class="grid mt-8">
+                            <h4 class="block text-sm font-medium text-gray-700 whitespace-nowrap">Credit Card</h4>
+                            <div class="grid gap-4">
+                                <u-form-group label="" help="Card Number">
+                                    <u-input v-model="form.PaymentProfile.Payment.CreditCard.CardNumber"></u-input>
+                                </u-form-group>
+                                <div class="grid grid-cols-3 gap-4">
+                                    <u-form-group label="" help="Card Expiration">
+                                        <u-select :options="[
+                                            '01', '02', '03', '04', '05', '06',
+                                            '07', '08', '09', '10', '11', '12',
+                                        ]" v-model="form.PaymentProfile.Payment.CreditCard.ExpirationDate"></u-select>
+                                    </u-form-group>
+                                    <u-form-group label="">
+                                        <u-select :options="[
+                                            '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'
+                                        ]" v-model="form.PaymentProfile.Payment.CreditCard.ExpirationDate"></u-select>
+                                    </u-form-group>
+                                    <u-form-group label="" help="CVC / CVV2 / CID">
+                                        <u-input v-model="form.PaymentProfile.Payment.CreditCard.CardCode"></u-input>
+                                    </u-form-group>
+                                </div>
+                                <u-form-group label="" help="Cardholder Name">
+                                    <u-input v-model="form.PaymentProfile.BillTo.FirstName"></u-input>
+                                </u-form-group>
+
+                                <u-checkbox v-model="form.termsAgree"
+                                            name="termsAgree"
+                                            label="I agree to the terms and conditions"></u-checkbox>
+                            </div>
+
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-8 mt-8">
+                            <u-button type="submit"
+                                      block
+                                      label="Submit"
+                                      :disabled="invalid"></u-button>
+                        </div>
+                    </fieldset>
+                </form>
+            </validation-observer>
+
+        <div slot="modal-footer">
+            <div>
+
+                <b-button variant="outline-primary" v-on:click.prevent="profileModal.open=false">Close</b-button>
+            </div>
+        </div>
+    </b-modal>
+</div>

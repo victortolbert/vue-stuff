@@ -1,0 +1,256 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Schedule a Claim";
+}
+@Html.Hidden("accessToken", ViewData["AccessToken"].ToString())
+@Html.Hidden("exemplarApiUrl", ViewData["ExemplarApiUrl"].ToString())
+@Html.Hidden("exemplarCoreUrl", ViewData["ExemplarCoreUrl"].ToString())
+@Html.Hidden("currentUser", Json.Serialize(ViewData["CurrentUser"]))
+@Html.Hidden("adjusterId", Convert.ToInt32(ViewData["AdjusterId"]))
+@Html.Hidden("fromPortal", Convert.ToBoolean(ViewData["FromPortal"]))
+
+<template id="claims-index">
+    <div id="external-claim-form" class="relative flex flex-col h-full min-h-screen bg-primary-50">
+        <header class="bg-white sticky w-full uppercase text-lg">
+            <nav class="mx-auto flex max-w-7xl items-center whitespace-nowrap justify-between pr-8 md:pr-0" aria-label="Global">
+                <div class="flex  w-36 flex-shrink-0">
+                    <a href="#" class="-m-1.5 p-1.5">
+                        <span class="sr-only">Hancock Claims Consultants</span>
+                        <img class="h-20 w-auto" src="@ViewData["ExemplarCoreUrl"]/images/ExternalForm/logo.png" alt="Hancock Logo">
+                    </a>
+                </div>
+                <div class="flex md:hidden justify-end">
+                    <button
+                        v-on:click="showMobileMenu = !showMobileMenu"
+                        type="button"
+                        class="-m-2.5 inline-flex gap-1 font-bold items-center uppercase justify-center rounded-md p-2.5 text-primary-500"
+                    >
+                        Menu
+                        <span class="sr-only">Open main menu</span>
+                        <icon icon="carbon:menu" class="h-6 w-6"/>
+                    </button>
+                </div>
+                <div class="hidden md:flex md:flex-1 md:justify-center">
+                    <a
+                        class="py-6 px-4 hover:bg-primary-500 hover:text-white"
+                        href="https://hancockclaims.com/services/"
+                    > Services </a>
+                    <a
+                        class="py-6 px-4 hover:bg-primary-500 hover:text-white"
+                        href="https://hancockclaims.com/process/"
+                    > Process </a>
+                    <a
+                        class="py-6 px-4 hover:bg-primary-500 hover:text-white"
+                        href="https://hancockclaims.com/payments"
+                    > Make a Payment </a>
+
+                    <a
+                        class="py-6 px-4 hover:bg-primary-500 hover:text-white"
+                        href="https://hancockclaims.com/about"
+                    > About </a>
+                    <a
+                        class="py-6 px-4 hover:bg-primary-500 hover:text-white"
+                        href="https://hancockclaims.com/contact"
+                    > Contact </a>
+                </div>
+                <div class="w-36 flex-shrink-0 hidden md:block"></div>
+            </nav>
+
+            <!-- Mobile menu-->
+            <div v-if="showMobileMenu" id="mobile-menu">
+                <div class="space-y-1 pb-3 pt-2">
+                    <a
+                        href="https://hancockclaims.com/services/"
+                        class="border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800 block border-l-4 py-2 pl-8 pr-4 text-base font-medium"
+                    >Services</a>
+                    <a
+                        href="https://hancockclaims.com/process/"
+                        class="border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800 block border-l-4 py-2 pl-8 pr-4 text-base font-medium"
+                    >Process</a>
+                    <a
+                        href="https://hancockclaims.com/payments"
+                        class="border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800 block border-l-4 py-2 pl-8 pr-4 text-base font-medium"
+                    >Make a Payment</a>
+                    <a
+                        href="https://hancockclaims.com/about"
+                        class="border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800 block border-l-4 py-2 pl-8 pr-4 text-base font-medium"
+                    >About</a>
+                    <a
+                        href="https://hancockclaims.com/contact"
+                        class="border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800 block border-l-4 py-2 pl-8 pr-4 text-base font-medium"
+                    >Contact</a>
+              </div>
+            </div>
+        </header>
+
+        <main class="flex-1 mt-44">
+            <div class="w-full max-w-screen-lg p-4 mx-auto md:p-8" v-if="ValidationErrors.length > 0">
+                <div class="flex w-full p-4 border border-red-800 rounded shadow bg-red-50">
+                    <div class="flex-shrink-0">
+                        <icon icon="carbon:warning"
+                              class="w-5 h-5 text-red-800"></icon>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-bold text-red-800">
+                            <p>Form validation has failed. Please address the issue(s) below:</p>
+                        </h3>
+                        <div class="mt-2 text-sm text-red-800">
+                            <ol role="list" class="pl-5 space-y-1 list-disc">
+                                <li v-for="error in ValidationErrors">
+                                    {{ error.Error }}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <edit-form-component v-if="isMounted"
+                                 :model="editModel"
+                                 :is-insert="true"
+                                 :user-id="Number(1)"
+                                 :end-point="saveRoute"
+                                 :cancel-callback="EditCancelCallback"
+                                 :pre-save-call="PreSaveCallback"
+                                 :success-callback="SaveCallBack"
+                                 :is-pre-save-call-success="isPreSaveCallSuccess"
+                                 :access-token="''"
+                                 :exemplar-api-url="exemplarApiUrl"
+                                 :exemplar-core-url="exemplarCoreUrl"
+                                 :model-validator="editFormValidator"
+                                 :stringify="true"
+                                 :can-update="true"
+                                 :skip-close-event="true"
+                                 :by-pass-has-changes="true"
+                                 :can-delete="false"
+                                 :can-create="true"
+                                 ref="editFormRef"
+                                 title="">
+                <template #form>
+                    @await Html.PartialAsync("_EditForm.cshtml")
+                </template>
+            </edit-form-component>
+
+            <b-modal class="card-view-modal-container"
+                     :no-close-on-backdrop='true'
+                     :no-close-on-esc='true'
+                     :ok-only="true"
+                     size="lg"
+                     :title="stateFarmModalTitle"
+                     v-model="displayStateFarmModal"
+                     v-on:ok="RedirectStateFarmUsers"
+                     v-on:hide="RedirectStateFarmUsers">
+                <h2 class="text-lg-center">
+                    {{stateFarmModalMessage}}
+                </h2>
+            </b-modal>
+        </main>
+
+        <footer class="flex flex-col w-full max-w-screen-lg gap-4 p-4 mx-auto text-primary-400 md:p-8">
+            <nav>
+                <div class="flex items-center uppercase justify-around flex-wrap whitespace-nowrap">
+                    <a class="hover:underline p-2" href="https://hancockclaims.com/services">Services</a>
+                    <a class="hover:underline p-2" href="https://hancockclaims.com/process/">Process<a>
+                    <a class="hover:underline p-2" href="https://hancockclaims.com/about/">About</a>
+                    <a class="hover:underline p-2" href="https://hancockclaims.com/corporate-careers">Corporate Careers</a>
+                    <a class="hover:underline p-2" href="https://hancockclaims.com/become-a-technician">Become a Technician</a>
+                    <a class="hover:underline p-2" href="https://hancockclaims.com/payments">Make a Payment</a>
+                </div>
+            </nav>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between pt-4 text-sm border-t border-primary-200">
+                <div class="text-primary-300 flex items-center sm:items-start justify-center flex-col">
+                    <span>Copyright 2023 <span class="font-medium text-primary-400"> Hancock Claims Consultants</span></span>
+                    <span>All Rights Reserved.</span>
+                </div>
+                <nav class="mt-4 sm:mt-0 flex flex-col sm:flex-row items-center gap-2">
+                    <a class="text-primary-300 hover:underline hover:text-primary-500" href="https://hancockclaims.com/Terms-Conditions">Terms & Conditions</a>
+                    <a class="text-primary-300 hover:underline hover:text-primary-500" href="https://hancockclaims.com/privacy-policy">Privacy Policy</a>
+                    <a class="text-primary-300 hover:underline hover:text-primary-500" href="https://hancockclaims.com/contact">Contact</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+</template>
+
+<style>
+    /*
+        Hides the `PageHeader` that's embedded within
+        the `EditFormTemplate`.
+    */
+    #external-claim-form .edit-form-component > header {
+        display: none;
+    }
+
+    .inner-header {
+        margin: auto;
+        width: 50%;
+        border: 3px solid green;
+        padding: 10px;
+    }
+
+    .k-grid-toolbar {
+        display: none;
+    }
+
+    body[data-ts-area="Claim"] {
+        background-color: white;
+    }
+
+    #site-header nav.desktop ul {
+        float: left;
+        box-sizing: border-box;
+    }
+
+    #external-claim-form a.logo {
+        vertical-align: bottom;
+        padding-bottom: 0px;
+        padding-left: 28px;
+        padding-right: 28px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 182px;
+        top: 15px;
+        z-index: 3;
+        background-color: #ffffff;
+        box-sizing: border-box;
+        transition: top 0.5s ease;
+    }
+
+        #external-claim-form a.logo img {
+            width: 100%;
+            max-width: 124px;
+            max-height: 148px;
+        }
+
+        #external-claim-form a.logo:after {
+            content: "";
+            width: 0;
+            height: 0;
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 91.5px solid transparent;
+            border-right: 91.5px solid transparent;
+            border-top: 32px solid #ffffff;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 3;
+        }
+</style>
+
+@await Html.PartialAsync("~/Views/Shared/_EditFormTemplate.cshtml")
+@await Html.PartialAsync("~/Views/Shared/Controls/_BooleanTemplate.cshtml")
+@await Html.PartialAsync("~/Views/Shared/Controls/_CheckBoxTemplate.cshtml")
+@await Html.PartialAsync("~/Views/Shared/controls/_DropdownTemplate.cshtml")
+@await Html.PartialAsync("~/Views/Shared/Controls/_NumericTemplate.cshtml")
+@await Html.PartialAsync("~/Views/Shared/Controls/_TextBoxTemplate.cshtml")
+@await Html.PartialAsync("~/Views/Shared/Dropdowns/_StateDropdownTemplate.cshtml")
+@await Html.PartialAsync("~/Views/Shared/Modals/_AuditLogModal.cshtml")
+@await Html.PartialAsync("./ChildComponents/_WeatherWidgetTemplate.cshtml")
+@await Html.PartialAsync("~/Views/Shared/Controls/_PhoneNumberTemplate.cshtml")

@@ -1,0 +1,324 @@
+@{
+    ViewData["Title"] = "Payments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@await Html.PartialAsync("~/Views/Shared/_ViewDataImport.cshtml")
+@Html.Hidden("accessToken", ViewData["AccessToken"].ToString())
+@Html.Hidden("exemplarApiUrl", ViewData["ExemplarApiUrl"].ToString())
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
+<template id="payments-index">
+    <u-article id="payment-page">
+        <u-container>
+            <div v-if="confirmMessage"  class="grid max-w-3xl gap-12 text-lg text-center">
+                <h2 class="text-2xl text-primary-500">Thank you for your payment</h2>
+
+                <p>
+                    If you do not receive a confirmation email within 2 hours of submission please call<br>
+                    <b>770-569-1669</b>
+                </p>
+
+                <p>
+                    After 7:00PM &mdash; If you have a claim for tomorrow morning, please call 770-569-1669
+                </p>
+            </div>
+
+            <div v-else class="max-w-3xl">
+                <h2 class="text-3xl text-center text-primary-500">Make a Payment</h2>
+                <p class="p-2 mt-8 text-sm text-center bg-blue-200 rounded shadow">
+                    Note: For any questions regarding your account,
+                    please contact the billing department at 770-800-6582.
+                </p>
+
+                <ol class="grid gap-8 mt-8 sm:grid-cols-3 whitespace-nowrap">
+                    <li class="flex items-center gap-2">
+                        <icon :icon="activeStep === 'adjusterInformation'
+                                ? 'tabler:square-rounded-number-1-filled'
+                                : 'tabler:square-rounded-number-1'
+                            "
+                              class="flex-shrink-0 text-2xl"></icon>
+                        <button type="button"
+                                v-on:click="activeStep = 'adjusterInformation'"
+                                :class="{ 'font-bold': activeStep === 'adjusterInformation' }">
+                            Adjuster Information
+                        </button>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <icon :icon="activeStep === 'cardholderInformation'
+                                ? 'tabler:square-rounded-number-2-filled'
+                                : 'tabler:square-rounded-number-2'
+                            "
+                              class="flex-shrink-0 text-2xl"></icon>
+                        <button type="button"
+                                v-on:click="activeStep = 'cardholderInformation'"
+                                :class="{ 'font-bold': activeStep === 'cardholderInformation' }">
+                            Cardholder Information
+                        </button>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <icon :icon="activeStep === 'paymentInformation'
+                                ? 'tabler:square-rounded-number-3-filled'
+                                : 'tabler:square-rounded-number-3'
+                            "
+                              class="flex-shrink-0 text-2xl"></icon>
+                        <button type="button"
+                                v-on:click="activeStep = 'paymentInformation'"
+                                :class="{ 'font-bold': activeStep === 'paymentInformation' }">
+                            Payment Information
+                        </button>
+                    </li>
+                </ol>
+
+                <validation-observer v-slot="{ invalid }">
+                    <form class="mt-8" action="" v-on:submit.prevent="onSubmit">
+                        <transition name="fade" mode="out-in" appear>
+                            <fieldset key="adjusterInfo" v-show="activeStep === 'adjusterInformation'" class="grid gap-8">
+                                <legend class="font-semibold">
+                                    Adjuster Information
+                                </legend>
+
+                                <div class="grid gap-4 mt-8">
+                                    <validation-provider name="Adjuster name" rules="required" v-slot="{ errors }">
+                                        <u-form-group label="Adjuster Name">
+                                            <u-input name="adjusterName" v-model="form.FirstName"></u-input>
+                                            <span class="mt-1 text-xs text-red-500">{{ errors[0] }}</span>
+                                        </u-form-group>
+                                    </validation-provider>
+
+                                    <validation-provider name="Company name" rules="required" v-slot="{ errors }">
+                                        <u-form-group label="Company Name">
+                                            <u-input v-model="form.Company"></u-input>
+                                            <span class="mt-1 text-xs text-red-500">{{ errors[0] }}</span>
+                                        </u-form-group>
+                                    </validation-provider>
+
+                                    <validation-provider name="Email" rules="required|email" v-slot="{ errors }">
+                                        <u-form-group label="Email Address">
+                                            <u-input v-model="form.Email"></u-input>
+                                            <span class="mt-1 text-xs text-red-500">{{ errors[0] }}</span>
+                                        </u-form-group>
+                                    </validation-provider>
+
+                                    <validation-provider name="Phone number" rules="required" v-slot="{ errors }">
+                                        <u-form-group label="Phone Number">
+                                            <u-input v-model="form.PhoneNumber"></u-input>
+                                            <span class="mt-1 text-xs text-red-500">{{ errors[0] }}</span>
+                                        </u-form-group>
+                                    </validation-provider>
+
+
+                                    <u-form-group label="Invoice Number(s)" help="If paying multiple invoices, separate numbers with comma(s)">
+                                        <u-input v-model="form.invoice"></u-input>
+                                    </u-form-group>
+
+                                    <u-form-group label="Claims Number(s)" help="If paying multiple claims, separate numbers with comma(s)">
+                                        <u-input v-model="form.claims"></u-input>
+                                    </u-form-group>
+
+                                    <u-form-group label="Notes">
+                                        <u-textarea v-model="form.notes"></u-textarea>
+                                    </u-form-group>
+                                </div>
+
+                                <u-button block
+                                          label="Next"
+                                          v-on:click.native="activeStep = 'cardholderInformation'"></u-button>
+                            </fieldset>
+                        </transition>
+
+                        <transition name="fade" mode="out-in" appear>
+                            <fieldset key="cardholderInfo" v-show="activeStep === 'cardholderInformation'" class="mt-8">
+                                <legend class="flex items-center gap-4 font-semibold">
+                                    <span>Cardholder Information</span>
+
+                                    <button v-on:click="updateCardholderInformation"
+                                            type="button"
+                                            class="text-sm font-normal text-blue-500 hover:underline" v-if="!updateMode && !newEntry" >
+                                        Update Cardholder Information
+                                    </button>
+                                    <div class="flex items-center gap-4" v-if="updateMode && !newEntry">
+                                        <button v-on:click="cancelBillToInfo"
+                                                type="button"
+                                                class="text-sm font-normal text-blue-500 hover:underline">
+                                            Cancel
+                                        </button>
+                                        <button v-on:click="saveBillToInfo"
+                                                type="button"
+                                                class="text-sm font-normal text-blue-500 hover:underline">
+                                            Save
+                                        </button>
+                                    </div>
+                                </legend>
+
+                                <div class="grid mt-4">
+                                    <h4 class="block text-sm font-medium text-gray-700 whitespace-nowrap">Cardholder Name</h4>
+                                    <div class="grid gap-4 sm:grid-cols-2">
+                                        <u-form-group label="" help="First Name">
+                                            <u-input ref="firstName" v-model="form.PaymentProfile.BillTo.FirstName"
+                                                     :disabled="!updateMode && !newEntry"></u-input>
+                                        </u-form-group>
+                                        <u-form-group label="" help="Last Name">
+                                            <u-input ref="firstName" v-model="form.PaymentProfile.BillTo.LastName"
+                                                     :disabled="!updateMode && !newEntry"></u-input>
+                                        </u-form-group>
+                                    </div>
+                                </div>
+
+                                <div class="mt-8">
+                                    <div class="grid mt-4">
+                                        <h4 class="block text-sm font-medium text-gray-700 whitespace-nowrap">Cardholder Address</h4>
+                                        <div class="grid gap-4">
+                                            <u-form-group label="" help="Street Address">
+                                                <u-input v-model="form.PaymentProfile.BillTo.Address"
+                                                         :disabled="!updateMode && !newEntry"></u-input>
+                                            </u-form-group>
+
+                                            <div class="grid gap-4 sm:grid-cols-2">
+                                                <u-form-group label="" help="City">
+                                                    <u-input v-model="form.PaymentProfile.BillTo.City"
+                                                             :disabled="!updateMode && !newEntry"></u-input>
+                                                </u-form-group>
+                                                <u-form-group label="" help="State">
+                                                    <u-input v-model="form.PaymentProfile.BillTo.State"
+                                                             :disabled="!updateMode && !newEntry"></u-input>
+                                                </u-form-group>
+                                            </div>
+                                            <u-form-group label="" help="Zip Code" class="max-w-xs">
+                                                <u-input v-model="form.PaymentProfile.BillTo.Zip"
+                                                         :disabled="!updateMode && !newEntry"></u-input>
+                                            </u-form-group>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-4 mt-8">
+                                        <u-button variant="other"
+                                                  block
+                                                  label="Previous"
+                                                  v-on:click.native="activeStep = 'adjusterInformation'"></u-button>
+                                        <u-button block
+                                                  label="Next"
+                                                  v-on:click.native="activeStep = 'paymentInformation'"></u-button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </transition>
+
+                        <transition name="fade" mode="out-in" appear>
+                            <fieldset key="paymentInfo" v-show="activeStep === 'paymentInformation'" class="mt-8">
+                                <legend class="flex items-center gap-4 font-semibold">
+                                    <span>Billing and Payment Information</span>
+
+                                    <button v-on:click="updatePaymentInformation"
+                                            type="button"
+                                            class="text-sm font-normal text-blue-500 hover:underline" v-if="(!updateMode && !newEntry) && !newCCEntry" >
+                                        Update Payment Information
+                                    </button>
+                                    <div class="flex items-center gap-4" v-if="(!updateMode && !newEntry) && !newCCEntry">
+                                        <button v-on:click="cancelBillToInfo"
+                                                type="button"
+                                                class="text-sm font-normal text-blue-500 hover:underline">
+                                            Cancel
+                                        </button>
+                                        <button v-on:click="saveBillToInfo"
+                                                type="button"
+                                                class="text-sm font-normal text-blue-500 hover:underline">
+                                            Save
+                                        </button>
+                                    </div>
+                                </legend>
+                                <div class="max-w-xs mt-4">
+                                    <validation-provider name="Payment Amount" rules="required" v-slot="{ errors }">
+                                        <u-form-group label="Payment Amount">
+                                            <u-input type="number"
+                                                     v-model.number="form.PaymentProfile.OriginalAuthAmount"
+                                                     min="1"
+                                            ></u-input>
+                                        </u-form-group>
+                                    </validation-provider>
+                                </div>
+
+                                <div class="grid mt-8">
+                                    <h4 class="block text-sm font-medium text-gray-700 whitespace-nowrap">Credit Card</h4>
+                                    <div class="grid gap-4">
+                                        <div class="flex items-center gap-2 mt-4">
+                                            <icon icon="formkit:amex" class="text-2xl"></icon>
+                                            <icon icon="formkit:discover" class="text-2xl"></icon>
+                                            <icon icon="formkit:visa" class="text-2xl"></icon>
+                                            <icon icon="formkit:mastercard" class="text-2xl"></icon>
+                                        </div>
+                                        <validation-provider name="Card Number" rules="required" v-slot="{ errors }">
+                                            <u-form-group label="" help="Card Number">
+                                                <u-input v-model="form.PaymentProfile.Payment.CreditCard.CardNumber" :disabled="(!updateMode && !newEntry) && !newCCEntry"></u-input>
+                                            </u-form-group>
+                                        </validation-provider>
+
+                                        <div class="grid grid-cols-3 gap-4">
+                                            <validation-provider name="Card Expiration Month" rules="required" v-slot="{ errors }">
+                                                <u-form-group label="" help="Card Expiration">
+                                                    <select
+                                                        v-model="form.PaymentProfile.Payment.CreditCard.ExpirationMonth"
+                                                        :disabled="(!updateMode && !newEntry) && !newCCEntry"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm focus:outline-none focus:border-primary-500 focus:ring-primary-500"
+                                                    >
+                                                        <option v-for="month in monthOptions">
+                                                            {{ month }}
+                                                        </option>
+                                                    </select>
+                                                </u-form-group>
+                                            </validation-provider>
+
+                                            <validation-provider name="Card Expiration Year" rules="required" v-slot="{ errors }">
+                                                <u-form-group label="">
+                                                    <select
+                                                        v-model="form.PaymentProfile.Payment.CreditCard.ExpirationYear"
+                                                        :disabled="(!updateMode && !newEntry) && !newCCEntry"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm focus:outline-none focus:border-primary-500 focus:ring-primary-500"
+                                                    >
+                                                        <option v-for="year in yearOptions">
+                                                            {{ year }}
+                                                        </option>
+                                                    </select>
+                                                </u-form-group>
+                                            </validation-provider>
+
+                                            <validation-provider name="Card Code" rules="required" v-slot="{ errors }">
+                                                <u-form-group label="" help="CVC / CVV2 / CID">
+                                                    <u-input v-model="form.PaymentProfile.Payment.CreditCard.CardCode" :disabled="(!updateMode && !newEntry) && !newCCEntry"></u-input>
+                                                </u-form-group>
+                                            </validation-provider>
+                                        </div>
+
+                                        @*<u-form-group label="" help="Cardholder Name">
+                                            <u-input v-model="form.PaymentProfile.BillTo.FirstName"></u-input>
+                                        </u-form-group> *@
+
+                                        <u-checkbox v-model="form.termsAgree"
+                                                    name="termsAgree"
+                                                    label="I agree to the terms and conditions"></u-checkbox>
+                                    </div>
+
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-8 mt-8">
+                                    <u-button variant="other"
+                                              block
+                                              label="Previous"
+                                              v-on:click.native="activeStep = 'cardholderInformation'"></u-button>
+                                    <u-button type="submit"
+                                              block
+                                              label="Submit"
+                                              :disabled="invalid"></u-button>
+                                </div>
+                            </fieldset>
+                        </transition>
+                    </form>
+                </validation-observer>
+            </div>
+        </u-container>
+    </u-article>
+</template>

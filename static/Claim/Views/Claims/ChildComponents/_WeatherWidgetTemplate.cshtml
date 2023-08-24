@@ -1,0 +1,25 @@
+﻿<template id="weather-widget-template">
+    <div v-if="date && latitude && longitude">
+        <div v-if="loading" id="page-loader">Loading&#8230;</div>
+        <span v-if="loading">Loading forecast</span>
+        <div v-if="loadingError" id="loading-error" class="center">
+            <span>Unable to retrieve weather data</span>
+        </div>
+        <div v-if="!loading" class="w65">
+            <span class="wSpan" id=" " style="font-weight: bold;">
+                {{ forecast.name }} forecast{{ forecast.city ? ` for ${forecast.city}` : "" }}, {{ forecast.state }}
+            </span>
+            <span class="wSpan">
+                {{ forecast.shortForecast }}
+            </span>
+            <span class="wSpan" id="weatherTemp">
+                High: {{ forecast.temperature }} &#176; {{ forecast.temperatureUnit }} &nbsp;&nbsp;&nbsp;&nbsp;Winds {{ forecast.windDirection }} {{ forecast.windSpeed }}
+            </span>
+        </div>
+        <div class="w35">
+            <div id="weatherIcon">
+                <img :src="forecast.icon" />
+            </div>
+        </div>
+    </div>
+</template>

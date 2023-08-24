@@ -1,0 +1,45 @@
+﻿<header class="fixed z-20 w-full text-white bg-primary-500">
+    <div class="flex justify-between px-4 py-2">
+        <div class="flex flex-col">
+            <div class="flex items-center">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <path d="M25.1074 6C20.9532 7.42373 12.5157 10.3119 12 10.4746V18L25.1074 14.339L38 18V10.4746L25.1074 6Z" fill="currentColor" stroke="currentColor"></path>
+                    <path d="M20.1653 20L12 22.2373V42H20.1653V34.5424H29.8347V42H38V22.2373L29.8347 20V27.2712H20.1653V20Z" fill="currentColor" stroke="currentColor"></path>
+                </svg>
+
+                <div class="leading-none">
+                    <h1 class="text-xl font-extrabold whitespace-nowrap">Hancock Portal</h1>
+                    <span class="text-sm text-primary-200">
+                        {{ today }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-2">
+            <a href="/payment/payments"
+                    target="_blank"
+                    class="items-center hidden px-4 py-2 space-x-2 text-sm font-medium leading-4 text-white border border-transparent rounded shadow-sm whitespace-nowrap sm:inline-flex bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                <span>Make a Payment</span>
+            </a>
+            <button type="button" v-on:click="onNewClaimClicked()"
+                    class="items-center hidden px-4 py-2 space-x-2 text-sm font-medium leading-4 text-white border border-transparent rounded shadow-sm whitespace-nowrap sm:inline-flex bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                <i class="fas fa-edit"></i>
+                <span>New Claim</span>
+            </button>
+            <button type="button" v-on:click="GetProfile"
+                    class="inline-flex items-center px-4 py-2 space-x-2 text-xs font-medium text-gray-700 bg-white border border-gray-300 rounded shadow-sm whitespace-nowrap hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                <i class="fas fa-address-card"></i>
+                <span>My Profile</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<div class="flex flex-col items-center justify-center px-4 space-y-2 sm:hidden">
+    <button type="button" v-on:click="onNewClaimClicked()"
+            class="items-center block w-full px-4 py-2 space-x-2 text-sm font-medium leading-4 text-white border border-transparent rounded shadow-sm whitespace-nowrap bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+        <i class="fas fa-edit"></i>
+        <span>New Claim</span>
+    </button>
+</div>

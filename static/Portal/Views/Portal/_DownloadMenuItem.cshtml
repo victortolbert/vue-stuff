@@ -1,0 +1,9 @@
+﻿<template id="download-menu-item-template">
+    <a :aria-label="label"
+       :class="`download-menu-item ${disabled ? 'disabled' : ''}`"
+       @@click="Download()"
+       :disabled="disabled"
+       href="#">
+        <span class="k-icon k-i-download"></span> <slot></slot>
+    </a>
+</template>

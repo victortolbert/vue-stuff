@@ -1,0 +1,41 @@
+﻿<template id="download-menu-template">
+    <td class="download-menu">
+        <kendo-button aria-label="Download Assets menu"
+                      @@click="ToggleMenu()"
+                      :disabled="isDisabled()"
+                      ref="downloadMenuButton">
+            <span class="k-icon k-i-download"></span> Deliverables
+        </kendo-button>
+        <kendo-popup anchor="downloadMenuButton"
+                     popup-class="download-menu-content"
+                     :show="showMenu">
+            <download-menu-item :disabled="menuItemIsDisabled(5)"
+                                @@downloadrequest="HandleDownloadRequest"
+                                :asset-type-id="5">
+                Photo Form
+            </download-menu-item>
+            <download-menu-item :disabled="menuItemIsDisabled(6)"
+                                @@downloadrequest="HandleDownloadRequest"
+                                :asset-type-id="6">
+                Report
+            </download-menu-item>
+            <download-menu-item :disabled="menuItemIsDisabled(12)"
+                                @@downloadrequest="HandleDownloadRequest"
+                                :asset-type-id="12">
+                Diagram
+            </download-menu-item>
+            <download-menu-item :disabled="menuItemIsDisabled(3)"
+                                @@downloadrequest="HandleDownloadOriginalFieldAssets"
+                                :asset-type-id="3">
+                Original Photos
+            </download-menu-item>
+            <download-menu-item v-for="item in otherMenuItems()"
+                                @@downloadrequest="HandleDownloadRequest"
+                                :asset-type-id="item.assetTypeId"
+                                :key="item.name">
+                {{ item.name }}
+            </download-menu-item>
+        </kendo-popup>
+    </td>
+</template>
+@await Html.PartialAsync("~/Areas/Portal/Views/Portal/_DownloadMenuItem.cshtml")

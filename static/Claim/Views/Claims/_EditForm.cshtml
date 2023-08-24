@@ -1,0 +1,707 @@
+﻿<div id="edit-form" class="w-full p-8 mx-auto">
+    <div v-if="showLoader" id="page-loader">Loading&#8230;</div>
+
+    <div v-show="!formSubmitted && !showLoader" class="w-full">
+        <section id="hero-section" class="flex flex-col w-full max-w-screen-md gap-8 mx-auto text-xl font-light text-center">
+            <div class="flex flex-col gap-8 text-primary-500">
+                <h2 class="text-4xl">
+                    Schedule A Claim
+                </h2>
+                <p>
+                    Welcome to <b class="font-semibold">EXEMPLAR</b> - Hancock’s premier scheduling and logistics tool accelerating
+                    data into business insight
+                </p>
+                <p>
+                    <b class="font-semibold">Note:</b> If you do not receive a confirmation email within 2 hours of submission please
+                    call <b class="font-bold text-black">770-569-1669</b>.
+                </p>
+            </div>
+            <p class="text-black">
+                Please note that Hancock partners with insurance carriers and their adjuster
+                affiliates only.
+            </p>
+            <p>
+                For questions regarding other service offerings please contact us at 770.569.1669.
+            </p>
+            <div>
+                <p class="warning"><b>NOTE: </b>To prevent any issues, we recommend using Chrome as your browser.</p>
+            </div>
+        </section>
+
+        <section id="submit-claim-section"
+                 class="w-full max-w-screen-lg pt-8 mx-auto mt-8 border-t border-primary-500">
+            <div>
+                <ul class="w-full">
+                    <li class="mx-auto mb-8">
+                        <div class="flex flex-col w-full gap-2 mt-1 text-center">
+                            <label for="postal-code" class="block m-2"> Please enter your ZIP Code to get started </label>
+                            <div class="flex flex-col justify-center w-full gap-4 sm:flex-row sm:items-end sm:gap-2">
+                                <div>
+                                    <input
+                                        type="search"
+                                        id="postal-code"
+                                        v-model="enteredPostalCode"
+                                        autocomplete="off"
+                                        class="w-full text-center border border-gray-300 rounded shadow sm:text-left focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
+                                        v-on:keyup.enter="OnPostalCodeChange"
+                                    />
+                                </div>
+                                <button v-on:click="OnPostalCodeChange" class="inline-flex items-center justify-center w-full px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm sm:block sm:w-64 bg-primary-600 hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 whitespace-nowrap">
+                                    Check for Coverage
+                                </button>
+                            </div>
+                            <div v-if="editModel.IsInCoverageArea" class="text-center">We've got you covered!</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <b-modal id="outOfCoverageModal"
+                     ok-title="Request Coverage"
+                     title="ZIP Code out of published coverage area"
+                     v-model="outOfCoverageModal.open"
+                     scrollable
+                     v-on:ok="RequestCoverage">
+
+                    <div class="grid gap-4 form-group">
+                        <p>
+                            To request coverage in your area, please click the button below.
+                        </p>
+                        <p>
+                            Additionally, please email us at <a class="text-blue-500 underline" href="mailto:claims@hancockclaims.com?subject=new Out of Coverage Claim&body=">claims@hancockclaims.com</a> with your claim details.
+                            We will review the request and provide any potential availability to you.
+                        </p>
+                        <p>
+                            Thank you for choosing Hancock Claims Consultants for comprehensive claims lifecycle support.
+                        </p>
+                    </div>
+            </b-modal>
+            <div v-show="editModel.IsInCoverageArea" class="grid gap-12 mt-4 md:grid-cols-2">
+                <ul class="flex flex-col gap-4">
+                    <li>
+                        <label for="claim-number" class="block">Claim Number</label>
+                        <div class="mt-1">
+                            <textbox-component id="claim-number"
+                                               v-on:onChanged="onClaimNumberChange($event)"
+                                               :current-value="editModel.ClaimNumber"
+                                               :text-area="false"
+                                               :max-characters="50"
+                                               :min-characters="1"
+                                               placeholder="Type claim number (letters, numbers and dashes only)"
+                                               hide-margin></textbox-component>
+                        </div>
+                        <div v-if="isClaimNumberInValid">
+                            <div v-html="invalidClaimMessage"></div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <label for="company" class="block">Company</label>
+                        <div class="mt-1">
+                            <company-dropdown-component id="company"
+                                                        v-on:onChanged="OnCompanyChange"
+                                                        :selected-value="editModel.CompanyId === null ? '' : editModel.CompanyId.toString()"
+                                                        :bind-list="bindCompany"
+                                                        :uri="getCompanyUri"
+                                                        hide-margin></company-dropdown-component>
+                        </div>
+                    </li>
+
+
+                    <li v-if="editModel.CompanyId === 384 || showOtherCarrierName">
+                        <label for="other-company" class="block">Please enter carrier name</label>
+                        <div class="mt-1">
+                            <textbox-component id="other-company"
+                                               v-on:onblurcallback="OnOtherCompanyNameChange($event)"
+                                               :current-value="editModel.CompanyName"
+                                               :text-area="false"
+                                               :max-characters="50"
+                                               :min-characters="1"
+                                               hide-margin></textbox-component>
+                        </div>
+                    </li>
+                    <li v-if="isCompanyUSAA">
+                        <label for="preferred-saluation-or-rank" class="block">Military Rank or Preferred Salutation</label>
+                        <div class="mt-1">
+                            <textbox-component id="preferred-saluation-or-rank"
+                                               v-on:onChanged="editModel.MilitaryRankSalutation = $event"
+                                               :current-value="editModel.MilitaryRankSalutation"
+                                               :text-area="false"
+                                               :max-characters="50"
+                                               :min-characters="1"
+                                               onpaste="event.preventDefault()"
+                                               hide-margin></textbox-component>
+                        </div>
+                    </li>
+                    <li>
+                        <label v-if="!isCompanyUSAA" for="insured-first-name" class="block">Insured First Name</label>
+                        <label v-if="isCompanyUSAA" for="insured-first-name" class="block">Member First Name</label>
+                        <div class="mt-1">
+                            <textbox-component id="insured-first-name"
+                                               v-on:onChanged="editModel.InsuredFirstName = $event"
+                                               :current-value="editModel.InsuredFirstName"
+                                               :text-area="false"
+                                               :max-characters="50"
+                                               :min-characters="1"
+                                               hide-margin></textbox-component>
+                        </div>
+                    </li>
+
+                    <li>
+                        <label v-if="!isCompanyUSAA" for="insured-last-name" class="block">Insured Last Name</label>
+                        <label v-if="isCompanyUSAA" for="insured-last-name" class="block">Member Last Name</label>
+                        <div class="mt-1">
+                            <textbox-component id="insured-last-name"
+                                               v-on:onChanged="editModel.InsuredLastName = $event"
+                                               :current-value="editModel.InsuredLastName"
+                                               :text-area="false"
+                                               :max-characters="50"
+                                               :min-characters="1"
+                                               hide-margin></textbox-component>
+                        </div>
+                    </li>
+
+                    <li>
+                        <label v-if="!isCompanyUSAA" for="insured-primary-phone" class="block">Insured Phone</label>
+                        <label v-if="isCompanyUSAA" for="insured-primary-phone" class="block">Member Phone</label>
+                        <div class="mt-1">
+                            <phone-number-component v-on:onChanged="editModel.InsuredPrimaryPhone = $event"
+                                                    :current-value="editModel.InsuredPrimaryPhone"></phone-number-component>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="flex flex-col gap-4">
+                    <li>
+                        <label for="street-address" class="block">Street Address</label>
+                        <div class="mt-1">
+                            <textbox-component id="street-address1"
+                                               v-on:onChanged="OnStreetAddressChange($event)"
+                                               :current-value="editModel.StreetAddress1"
+                                               :max-characters="50"
+                                               :min-characters="0"
+                                               hide-margin></textbox-component>
+                        </div>
+                    </li>
+                    <li>
+                        <label for="street-address-2" class="block">Suite</label>
+                        <div class="mt-1">
+                            <textbox-component id="street-address2"
+                                               v-on:onChanged="editModel.StreetAddress2 = $event"
+                                               :current-value="editModel.StreetAddress2"
+                                               :max-characters=50
+                                               :min-characters=0
+                                               hide-margin></textbox-component>
+                        </div>
+                    </li>
+                    <li>
+                        <label form="city" class="block"> City </label>
+                        <div class="mt-1">
+                            <textbox-component id="city"
+                                               v-on:onChanged="editModel.City = $event"
+                                               :current-value="editModel.City"
+                                               :text-area="false"
+                                               :max-characters="50"
+                                               :min-characters="1"
+                                               hide-margin></textbox-component>
+                        </div>
+                    </li>
+                    <li>
+                        <label for="state" class="block"> State </label>
+                        <div class="mt-1">
+                            <state-dropdown-component id="state"
+                                                      v-if="isMounted"
+                                                      v-on:onStateChange="OnStateChange"
+                                                      :bind-list="true"
+                                                      :selected-value="editModel.StateId?.toString() ?? ''"></state-dropdown-component>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <div v-if="editModel.IsInCoverageArea">
+            <section id="service-information-section"
+                     class="w-full max-w-screen-lg pt-8 mx-auto mt-8 border-t border-primary-500">
+                <h3 class="text-lg font-medium">
+                    Please indicate the type of service required
+                </h3>
+
+                <ul class="grid gap-12 mt-4 md:grid-cols-2">
+                    <li v-if="companyServiceTypes.length">
+
+                        <div class="flex flex-col gap-4 mt-1">
+                            <div v-for="companyServiceType in companyServiceTypes">
+                                <div v-if="!editModel.UseClaimBillingContact"
+                                     class="flex items-center gap-2">
+                                    <div class="e-checkbox box-label"
+                                         v-on:click="OnServiceTypeChecked(companyServiceType.AvailableServiceTypeId)"
+                                         :class="ServiceTypeExists(companyServiceType.AvailableServiceTypeId) ? 'answered' : '' "></div>
+                                    <span class="text-lg font-medium choice-text whitespace-nowrap">
+                                        {{ companyServiceType.AvailableServiceTypeName }}
+                                    </span>
+                                </div>
+
+                                <div class="pl-14">
+                                    {{ companyServiceType.Description }}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Catastrophic Event -->
+                    <li class="flex flex-col gap-4">
+                        <!-- Catastrophic Event -->
+                        <div>
+                            <label for="catastrophic-event"
+                                   class="block">
+                                Catastrophic Event  {{editModel.CatastrophicEvent}}
+                            </label>
+                            <div class="mt-1">
+                                <check-box-component id="catastrophic-event"
+                                                     v-on:onchanged="CatastrophicEvent = $event"
+                                                     :current-value="CatastrophicEvent"
+                                                     :choices="catastrophicEventChoices"></check-box-component>
+                            </div>
+                        </div>
+
+                        <!-- Re-inspect -->
+                        <div>
+                            <label for="is-reinspect"
+                                   class="block">Re-inspect</label>
+                            <div class="mt-1">
+                                <boolean-component id="is-reinspect"
+                                                   v-on:onChanged="editModel.IsReinspect = $event"
+                                                   :current-value="editModel.IsReinspect"
+                                                   :choices="['Yes','No']"></boolean-component>
+                            </div>
+                        </div>
+
+                        <!-- Appointment Date Picker -->
+                        <div v-if="showAppointmentDatePicker">
+                            <label for="appointment-date"
+                                   class="flex flex-col gap-1">
+                                Please select an Appointment Date {{validationRequirement}}
+                            </label>
+                            <div class="mt-1">
+                                <date-picker id="appointmentDate" style="width: 100%; background-color: white; min-width: 320px"
+                                             :value="appointmentDate"
+                                             :min="new Date(minDate())"
+                                             v-on:change="OnAppointmentDateChange"
+                                             format="MM/dd/yyyy"></date-picker>
+                                <div class="text-sm">
+                                    <span class="italic">
+                                        Please contact the office directly at <span class="font-bold text-black">770-569-1669</span>
+                                        for same day requests.
+                                    </span>
+                                    <p class="mt-1" style="color:red">{{ appointmentMessage }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Time Selection -->
+                        <div v-if="showTimeSlots">
+                            <label for="time-slot" class="block">Please select a time</label>
+                            <div class="mt-1">
+                                <time-slot-dropdown-component id="time-slot"
+                                                              v-on:onChanged="OnTimeSlotChange"
+                                                              @@timeslotcallback="TimeSlotSuccessfullCallBack"
+                                                              :uri="getTimeSlotsUri"
+                                                              :bind-list="bindTimeSlot"
+                                                              hide-margin></time-slot-dropdown-component>
+                            </div>
+                        </div>
+
+                        <!--- Damage Types -->
+                        <div v-if="showDamageTypes">
+                            <label for="is-reinspect"
+                                   class="block">Please indicate the Damage Type</label>
+                            <div v-if="!editModel.UseClaimBillingContact"
+                                 class="flex items-center mt-1">
+                                <div v-on:click="ProcessDamageTypes(1)"
+                                     class="e-checkbox box-label"
+                                     :class="DamageTypeExists(1) ? 'answered' : '' "></div>
+                                <label class="choice-text whitespace-nowrap">
+                                    Wind / Hail
+                                </label>
+                            </div>
+                            <div v-if="!editModel.UseCompanyBillingContact"
+                                 class="flex items-center">
+                                <div v-on:click="ProcessDamageTypes(2)"
+                                     class="e-checkbox box-label"
+                                     :class="DamageTypeExists(2) ? 'answered' : '' "></div>
+                                <label class="choice-text whitespace-nowrap">
+                                    Winter Peril
+                                </label>
+                            </div>
+                            <div v-if="!editModel.UseCompanyBillingContact"
+                                 class="flex items-center">
+                                <div v-on:click="ProcessDamageTypes(3)"
+                                     class="e-checkbox box-label"
+                                     :class="DamageTypeExists(3) ? 'answered' : '' "></div>
+                                <label class="choice-text whitespace-nowrap">
+                                    Driving Rain / Leak Detection
+                                </label>
+                            </div>
+                            <div v-if="!editModel.UseCompanyBillingContact"
+                                 class="flex items-center">
+                                <div v-on:click="ProcessDamageTypes(4)"
+                                     class="e-checkbox box-label"
+                                     :class="DamageTypeExists(4) ? 'answered' : '' "></div>
+                                <div class="flex items-center gap-4">
+                                    <label for="other-damage-type"
+                                           class="block">Other</label>
+                                    <div class="mt-1">
+                                        <textbox-component id="other-damage-type"
+                                                           v-on:onChanged="SetOtherValue($event)"
+                                                           :current-value="GetOtherValue()"
+                                                           :text-area="false"
+                                                           :max-characters=50
+                                                           :min-characters=1
+                                                           :disabled="false"
+                                                           hide-margin></textbox-component>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <weather-widget v-if="this.editModel && this.editModel.ProjectInspection && this.editModel.ProjectInspection.ServiceAreaId !== 0"
+                                        :city="editModel.City"
+                                        :state-id="editModel.StateId"
+                                        :date="appointmentDate"
+                                        :longitude="longitude"
+                                        :latitude="latitude"></weather-widget>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="adjuster-information-section"
+                     class="w-full max-w-screen-lg pt-8 mx-auto mt-8 border-t border-primary-500">
+                <h3 class="text-lg font-medium"> Adjuster Information </h3>
+
+                <section class="grid gap-12 mt-4 lg:grid-cols-2">
+                    <ul class="grid gap-8">
+                        <li>
+                            <label for="is-independent-adjuster" class="block"> Is Independent Adjuster </label>
+                            <div class="mt-1">
+                                <check-box-component id="is-independent-adjuster"
+                                                     v-on:onChanged="OnIndependentAdjusterChange"
+                                                     :current-value="isIndependentAdjuster"
+                                                     :choices="['No', 'Yes']"></check-box-component>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="adjuster-first-name" class="block"> Adjuster First Name </label>
+                            <div class="mt-1">
+                                <textbox-component id="adjuster-first-name"
+                                                   v-on:onChanged="editModel.AdjusterFirstName = $event"
+                                                   :current-value="editModel.AdjusterFirstName"
+                                                   :text-area="false"
+                                                   :max-characters="50"
+                                                   :min-characters="1"
+                                                   hide-margin></textbox-component>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="adjuster-last-name" class="block"> Adjuster Last Name </label>
+                            <div class="mt-1">
+                                <textbox-component id="adjuster-last-name"
+                                                   v-on:onChanged="editModel.AdjusterLastName = $event"
+                                                   :current-value="editModel.AdjusterLastName"
+                                                   :text-area="false"
+                                                   :max-characters="50"
+                                                   :min-characters="1"
+                                                   hide-margin></textbox-component>
+                            </div>
+                        </li>
+                        <li>
+                            <label for="adjuster-email" class="block"> Adjuster Email </label>
+                            <div class="mt-1">
+                                <textbox-component id="adjuster-email"
+                                                   v-on:onChanged="editModel.AdjusterEmail = $event"
+                                                   v-on:onblurcallback="CheckIfAdjusterEmailMatches"
+                                                   :current-value="editModel.AdjusterEmail"
+                                                   :text-area="false"
+                                                   :max-characters="50"
+                                                   :min-characters="1"
+                                                   onpaste="event.preventDefault()"
+                                                   hide-margin></textbox-component>
+                            </div>
+                        </li>
+                        <li v-if="adjusterId == 0">
+                            <label for="confirm-email" class="block"> Confirm Email </label>
+                            <div class="mt-1">
+                                <textbox-component id="confirm-email"
+                                                   v-on:onChanged="editModel.AdjusterConfirmEmail = $event"
+                                                   v-on:onblurcallback="CheckIfAdjusterEmailMatches"
+                                                   :current-value="editModel.AdjusterConfirmEmail"
+                                                   :text-area="false"
+                                                   :max-characters="50"
+                                                   :min-characters="1"
+                                                   onpaste="event.preventDefault()"
+                                                   hide-margin></textbox-component>
+                            </div>
+                            <div v-show="showAdjusterMessage" class="mt-1 warning">
+                                Please ensure the adjuster's email address matches in the email and confirm textboxes.
+                            </div>
+                        </li>
+                        <li v-if="isCompanyUSAA">
+                            <label for="claim-specific-email" class="block"> Claim Specific Email </label>
+                            <div class="mt-1">
+                                <textbox-component id="claim-specific-email"
+                                                   v-on:onChanged="editModel.ClaimSpecificEmail = $event"
+                                                   v-on:onblurcallback="ValidateClaimSpecificEmail"
+                                                   :text-area="false"
+                                                   :max-characters="150"
+                                                   :min-characters="1"
+                                                   onpaste="event.preventDefault()"
+                                                   hide-margin></textbox-component>
+                            </div>
+                            <div v-show="showClaimSpecificEmailMessage" class="mt-1 warning">
+                                Please add USAA claim-specific email ID in order to proceed with this submission. If you are an independent adjuster submitting the claim for USAA, please choose "Other customer" as the carrier to proceed. Thank you.
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <label for="adjuster-phone" class="block">Adjuster Phone</label>
+                                <div class="mt-1">
+                                    <phone-number-component v-on:onChanged="editModel.AdjusterPhone = $event"
+                                                            :disabled="false"
+                                                            :current-value="editModel.AdjusterPhone"></phone-number-component>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Billing Contact Section -->
+                        <li v-if="editModel.IsIndependentAdjuster">
+                            <ul class="grid gap-8">
+                                <li>
+                                    <label for="billing-first-name" class="block"> Billing Contact First Name </label>
+                                    <div class="mt-1">
+                                        <textbox-component id="billing-first-name"
+                                                           v-on:onChanged="editModel.BillingContactFirstName = $event"
+                                                           :current-value="editModel.BillingContactFirstName"
+                                                           :text-area="false"
+                                                           :max-characters="100"
+                                                           :min-characters="1"
+                                                           hide-margin></textbox-component>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="billing-contact-last-name" class="block"> Billing Contact Last Name </label>
+                                    <div class="mt-1">
+                                        <textbox-component id="billing-contact-last-name"
+                                                           v-on:onChanged="editModel.BillingContactLastName = $event"
+                                                           :current-value="editModel.BillingContactLastName"
+                                                           :text-area="false"
+                                                           :max-characters="100"
+                                                           :min-characters="1"
+                                                           hide-margin></textbox-component>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label id="billing-contact-email" class="block"> Billing Email </label>
+                                    <div class="mt-1">
+                                        <textbox-component id="billing-contact-email"
+                                                           v-on:onChanged="editModel.BillingContactEmail = $event"
+                                                           :current-value="editModel.BillingContactEmail"
+                                                           :text-area="false"
+                                                           :max-characters="50"
+                                                           :min-characters="1"
+                                                           hide-margin></textbox-component>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label id="billing-phone" class="block"> Billing Phone </label>
+                                    <div class="mt-1">
+                                        <phone-number-component v-on:onChanged="editModel.BillingContactPhone = $event"
+                                                                :current-value="editModel.BillingContactPhone"></phone-number-component>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div>
+                        <label for="notes" class="block"> Notes </label>
+                        <div class="mt-1">
+                            <textbox-component id="notes"
+                                               v-on:onChanged="editModel.AddressComments = $event"
+                                               :current-value="editModel.AddressComments"
+                                               :text-area="true"
+                                               :max-characters=500
+                                               :min-characters=5
+                                               hide-margin></textbox-component>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="adjuster-information-section" class="w-full max-w-screen-lg pt-8 mx-auto mt-8 border-t border-primary-500">
+                    <h3 class="flex items-center gap-8 -ml-8 text-lg font-medium cursor-pointer">
+                        <button class="flex items-center gap-1" v-on:click="showBillingInfo = !showBillingInfo">
+                            <icon :icon="showBillingInfo ? 'carbon:caret-down' : 'carbon:caret-right'" class="text-2xl"></icon>
+                            <span>Billing and Payment Information</span>
+                        </button>
+                        <button
+                            v-if="showBillingInfo"
+                            v-on:click="update"
+                            type="button"
+                            class="text-sm font-normal text-blue-500 hover:underline"
+                        >Update</button>
+                    </h3>
+                    <transition name="fade">
+                        <div v-show="showBillingInfo" class="grid gap-8 mt-4 md:grid-cols-2">
+                            <fieldset>
+                                <div class="grid">
+
+                                        <h4 class="block text-sm font-medium text-gray-700 whitespace-nowrap">Cardholder Name</h4>
+                                        <div class="grid gap-4 sm:grid-cols-2">
+                                            <u-form-group label="" help="First Name">
+                                                <u-input
+                                                    v-model="billingInfo.PaymentProfile.BillTo.FirstName"
+                                                    :disabled.sync="updateMode"
+                                                ></u-input>
+                                            </u-form-group>
+                                            <u-form-group label="" help="Last Name">
+                                                <u-input
+                                                    v-model="billingInfo.PaymentProfile.BillTo.LastName"
+                                                    :disabled.sync="updateMode"
+                                                ></u-input>
+                                            </u-form-group>
+                                        </div>
+                                    </div>
+                                <div class="mt-8">
+                                        <div class="grid mt-4">
+                                            <h4 class="block text-sm font-medium text-gray-700 whitespace-nowrap">Cardholder Address</h4>
+                                            <div class="grid gap-4">
+                                                <u-form-group label="" help="Street Address">
+                                                    <u-input
+                                                        v-model="billingInfo.PaymentProfile.BillTo.Address"
+                                                        :disabled.sync="updateMode"
+                                                    ></u-input>
+                                                </u-form-group>
+                                                <u-form-group label="" help="Address Line 2">
+                                                    <u-input
+                                                        v-model="billingInfo.PaymentProfile.BillTo.Address"
+                                                        :disabled.sync="updateMode"
+                                                    ></u-input>
+                                                </u-form-group>
+                                                <div class="grid gap-4 sm:grid-cols-2">
+                                                    <u-form-group label="" help="City">
+                                                        <u-input
+                                                            v-model="billingInfo.PaymentProfile.BillTo.City"
+                                                            :disabled.sync="updateMode"
+                                                        ></u-input>
+                                                    </u-form-group>
+                                                    <u-form-group label="" help="State">
+                                                        <u-input
+                                                            v-model="billingInfo.PaymentProfile.BillTo.State"
+                                                            :disabled.sync="updateMode"
+                                                        ></u-input>
+                                                    </u-form-group>
+                                                </div>
+                                                <u-form-group label="" help="Zip Code" class="max-w-xs">
+                                                    <u-input
+                                                        v-model="billingInfo.PaymentProfile.BillTo.Zip"
+                                                        :disabled.sync="updateMode"
+                                                    ></u-input>
+                                                </u-form-group>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="grid">
+                                <h4 class="block text-sm font-medium text-gray-700 whitespace-nowrap">Credit Card</h4>
+                                <div class="grid gap-4">
+                                 <div class="flex items-center gap-2 mt-4">
+                                        <icon icon="formkit:amex" class="text-2xl"></icon>
+                                        <icon icon="formkit:discover" class="text-2xl"></icon>
+                                        <icon icon="formkit:visa" class="text-2xl"></icon>
+                                        <icon icon="formkit:mastercard" class="text-2xl"></icon>
+                                    </div>
+                                <u-form-group label="" help="Card Number">
+                                            <u-input
+                                                v-model="billingInfo.PaymentProfile.Payment.CreditCard.CardNumber"
+                                                :disabled.sync="updateMode"
+                                            ></u-input>
+                                        </u-form-group>
+                                        <div class="grid grid-cols-3 gap-4 mt-8">
+                                            <u-form-group label="" help="Card Expiration">
+                                                <u-select
+                                                    :options="[
+                                                        '01', '02', '03', '04', '05', '06',
+                                                        '07', '08', '09', '10', '11', '12',
+                                                    ]"
+                                                    v-model="billingInfo.PaymentProfile.Payment.CreditCard.ExpirationDate"
+                                                    :disabled.sync="updateMode"
+                                                ></u-select>
+                                            </u-form-group>
+                                            <u-form-group label="">
+                                                <u-select
+                                                    :options="[
+                                                        '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'
+                                                    ]"
+                                                    v-model="billingInfo.PaymentProfile.Payment.CreditCard.ExpirationDate"
+                                                    :disabled.sync="updateMode"
+                                                ></u-select>
+                                            </u-form-group>
+                                            <u-form-group label="" help="CVC / CVV2 / CID">
+                                                <u-input
+                                                    v-model="billingInfo.PaymentProfile.Payment.CreditCard.CardCode"
+                                                    :disabled.sync="updateMode"
+                                                ></u-input>
+                                            </u-form-group>
+                                        </div>
+                                        <u-form-group label="" help="Cardholder Name">
+                                            <u-input
+                                                v-model="billingInfo.PaymentProfile.BillTo.FirstName"
+                                                :disabled.sync="updateMode"
+                                            ></u-input>
+                                        </u-form-group>
+                                        <u-checkbox
+                                            v-model="termsAgree"
+                                            name="termsAgree"
+                                            label="I agree to the terms and conditions"
+                                            :disabled.sync="updateMode"
+                                        ></u-checkbox>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </transition>
+                </section>
+
+                <div class="mt-8">
+                    <label for="is-additional-claim" class="block">
+                        Would you like to create another claim after submitting this one?
+                    </label>
+                    <div class="flex items-center mt-1">
+
+                        <div class="e-checkbox box-label"
+                             v-on:click="IsAdditionalClaim = !IsAdditionalClaim"
+                             :class="IsAdditionalClaim ? 'answered' : '' ">
+                        </div>
+                        <span class="choice-text whitespace-nowrap">Yes</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div v-if="editModel.IsInCoverageArea" class="w-full mx-auto my-12 md:max-w-sm">
+            <button v-on:click="submitClaim"
+                    class="flex items-center justify-center w-full p-4 text-lg font-medium text-white transition-transform duration-100 border shadow-lg bg-primary-400 hover:bg-primary-500 active:scale-95 active:bg-primary-600">
+                Submit
+            </button>
+        </div>
+        <div v-if="showUnableToSaveErrorMessage" class="flex flex-col items-center justify-center w-full max-w-screen-md gap-8 p-8 mx-auto text-xl font-light text-center warning">
+            Alert! This claim cannot be submitted on this page.  Please contact our office at 770.569.1669 and our customer service team will provide you with your local regional management contact for additional options.
+        </div>
+    </div>
+
+    <div v-if="formSuccessful && editModel.IsInCoverageArea" class="flex flex-col items-center justify-center w-full max-w-screen-md gap-8 p-8 mx-auto text-xl font-light text-center">
+        <h2 class="text-4xl text-primary-500">Thank you for your request</h2>
+        <p>If you do not receive a confirmation email within 2 hours of submission please call <b class="font-bold text-black">770-569-1669</b></p>
+        <p>After 7:00PM – If you have a claim for tomorrow morning. Please call 770-569-1669.</p>
+    </div>
+    <div v-if="adjusterInCollections" class="flex flex-col items-center justify-center w-full max-w-screen-md gap-8 p-8 mx-auto text-xl font-light text-center">
+        <p>We apologize for the inconvenience, however we are unable to complete your request at this time. Please contact our billing department at your earliest convenience at <b class="font-bold text-black">770-800-6582</b>. Thank you for considering Hancock for your roof inspection service.</p>
+    </div>
+</div>

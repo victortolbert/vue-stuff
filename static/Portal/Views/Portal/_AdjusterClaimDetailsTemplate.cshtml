@@ -1,0 +1,84 @@
+﻿<template inline-template id="adjuster-claim-details-template">
+    <b-modal v-model="claimDetails.open"
+             header-class="card-header"
+             title="Claim Details"
+             :no-close-on-backdrop='claimDetails.noCloseOnBackdrop'
+             :no-close-on-esc='claimDetails.noCloseOnEsc'
+             v-on:hide="onHide">
+
+        <kendo-tabstrip style="width: 100%;" @@select="onTabSelect" ref="ddList">
+            <ul>
+                <li class="k-state-active">
+                    Details
+                </li>
+                <li>
+                    Comments
+                </li>
+            </ul>
+        </kendo-tabstrip>
+        <div v-show="showDetailsSection">
+            <p style="font-weight:700; margin-top: 15px; text-decoration:underline">Claim Information</p>
+            <div>
+                Carrier: {{claimDetails.model.CompanyName}}
+            </div>
+            <div>
+                Claim Number: {{claimDetails.model.ClaimNumber}}
+            </div>
+            <div>
+                Claim Status: {{claimDetails.model.ProjectStatus}}
+            </div>
+            <div>
+                Exemplar Project Number: {{claimDetails.model.ProjectNumber}}
+            </div>
+            <br />
+            <p style="font-weight:700; text-decoration:underline">Policy Holder Information</p>
+            <div>
+                Policy Holder Name: {{claimDetails.model.InsuredName}}
+            </div>
+            <div>
+                Address: {{claimDetails.model.InsuredAddress}}
+            </div>
+            <div>
+                Address Comments: {{claimDetails.model.AddressComments}}
+            </div>
+            <br />
+            <p style="font-weight:700; text-decoration:underline">Inspection Details</p>
+            <div>
+                Scheduled Date: {{claimDetails.model.InspectionDate}}
+            </div>
+            <div>
+                Technician(s):
+            </div>
+            <div style="padding-left:50px">
+
+                <div v-for="serviceTechnican in claimDetails.model.ServiceTechnicans">
+
+                    <p>Name:  {{serviceTechnican.Name}}</p>
+                    <p>Phone:  {{serviceTechnican.PrimaryPhone}}</p>
+                    <p>Email:  {{serviceTechnican.PrimaryEmail}}</p>
+                    <br />
+                </div>
+            </div>
+            <div>
+                <p style="font-weight:700; text-decoration:underline"> Service Type(s):</p> {{claimDetails.model.ServiceTypes}}
+            </div>
+        </div>
+        <div v-show="!showDetailsSection">
+
+            <div v-for="projectComment in projectComments">
+                <div style="margin-top:10px">
+
+                    <p><b>Created By:</b>  {{projectComment.CreatedByUser}} {{projectComment.CreatedOn}}</p>
+                    <p><b>Comment:</b>  {{projectComment.CommentText}}</p>
+                </div>
+                <hr />
+            </div>
+
+        </div>
+        <div slot="modal-footer">
+            <div>
+                <b-button variant="outline-primary" v-on:click.prevent="claimDetails.open=false">Close</b-button>
+            </div>
+        </div>
+    </b-modal>
+</template>

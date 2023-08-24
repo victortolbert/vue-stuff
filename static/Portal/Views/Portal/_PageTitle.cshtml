@@ -1,0 +1,18 @@
+﻿ <header class="flex justify-between w-full py-2 px-4 bg-white shadow sm:rounded border">
+    <div class="flex items-center justify-between space-x-8">
+        <h2 class="text-xl text-primary-500 font-medium whitespace-nowrap"> Claims</h2>
+    </div>
+
+    <div class="flex items-center space-x-4">
+        <div class="flex items-center text-sm space-x-4">
+            <button :class="`hover:underline whitespace-nowrap flex focus:outline-none space-x-2 items-center ${mapMode ? 'text-primary-600 font-bold' : 'text-primary-400'}`" v-on:click="mapMode=true">
+                <base-icon-solid name="map" class="text-gray-500"></base-icon-solid>
+                <span class="hidden sm:inline-block">Map Mode</span>
+            </button>
+            <button :class="`hover:underline whitespace-nowrap flex focus:outline-none space-x-2 items-center ${mapMode ? 'text-primary-400' : 'text-primary-600 font-bold'}`" v-on:click="mapMode=false">
+                <base-icon-solid name="calendar" class="text-gray-500"></base-icon-solid>
+                <span class="hidden sm:inline-block">Schedule Mode</span>
+            </button>
+        </div>
+    </div>
+ </header>
