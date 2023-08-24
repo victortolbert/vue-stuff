@@ -2,13 +2,13 @@ Sabahınız xeyir
 Egun on
 Bon mati
 Goedemorgen
-Tere hommikust
+Tere hommikust -
 Góðan morgun
 Yadra vinaka
-Magandang umaga po
-Hyvää huomenta
+Magandang umaga po -
+Hyvää huomenta -
 Bos días
-Amakya amalungi
+Amakya amalungi -
 Bonjou
 Barka da asuba
 Nyob zoo sawv ntxov
