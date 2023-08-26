@@ -30,3 +30,4 @@ coverage
 docs/.vitepress/dist
 docs/.vitepress/cache
 storybook-static/
+.env
