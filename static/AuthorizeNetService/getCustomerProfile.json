@@ -1,0 +1,10 @@
+{
+  "getCustomerProfileRequest": {
+    "merchantAuthentication": {
+      "name": "string",
+      "transactionKey": "string"
+    },
+    "customerProfileId": "string",
+    "includeIssuerInfo": "string"
+  }
+}

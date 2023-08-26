@@ -1,0 +1,35 @@
+<html>
+<head>
+<script type="text/javascript"
+    src="https://jstest.authorize.net/v1/Accept.js"
+    charset="utf-8">
+</script>
+</head>
+<body>
+<form id="paymentForm"
+    method="POST"
+    action="https://YourServer/PathToExistingPaymentProcessingScript">
+    <input type="text" name="cardNumber" id="cardNumber" placeholder="cardNumber"/> <br><br>
+    <input type="text" name="expMonth" id="expMonth" placeholder="expMonth"/> <br><br>
+    <input type="text" name="expYear" id="expYear" placeholder="expYear"/> <br><br>
+    <input type="text" name="cardCode" id="cardCode" placeholder="cardCode"/> <br><br>
+    <input type="hidden" name="dataValue" id="dataValue" />
+    <input type="hidden" name="dataDescriptor" id="dataDescriptor" />
+    <button>Pay</button>
+</form>
+
+<script type="text/javascript">
+function sendPaymentDataToAnet() {
+  const authData = {}
+  authData.clientKey = 'YOUR PUBLIC CLIENT KEY'
+  authData.apiLoginID = 'YOUR API LOGIN ID'
+
+  const cardData = {}
+  cardData.cardNumber = document.getElementById('cardNumber').value
+  cardData.month = document.getElementById('expMonth').value
+  cardData.year = document.getElementById('expYear').value
+  cardData.cardCode = document.getElementById('cardCode').value
+}
+</script>
+</body>
+</html>

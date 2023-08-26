@@ -64,7 +64,7 @@
     "@iconify-json/simple-icons": "^1.1.67",
     "@iconify-json/twemoji": "^1.1.12",
     "@iconify-json/vscode-icons": "^1.1.28",
-    "@iconify/json": "^2.2.105",
+    "@iconify/json": "^2.2.106",
     "@iconify/vue": "^4.1.1",
     "@intlify/unplugin-vue-i18n": "^0.12.3",
     "@ngneat/falso": "^7.1.0",
@@ -95,7 +95,7 @@
     "@types/jsdom": "^21.1.2",
     "@types/lodash-es": "^4.17.8",
     "@types/markdown-it-link-attributes": "^3.0.1",
-    "@types/node": "^18.17.9",
+    "@types/node": "^18.17.11",
     "@types/nprogress": "^0.2.0",
     "@types/qs": "^6.9.7",
     "@types/toastr": "^2.1.40",
@@ -140,7 +140,7 @@
     "mande": "^2.0.7",
     "markdown-it-link-attributes": "^4.0.1",
     "markdown-it-shiki": "^0.9.0",
-    "msw": "^1.2.3",
+    "msw": "^1.2.4",
     "msw-storybook-addon": "^1.8.0",
     "node-fetch": "^3.3.2",
     "npm-run-all": "^4.1.5",
@@ -167,7 +167,7 @@
     "unocss-preset-scrollbar": "^0.2.1",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.1",
-    "unplugin-vue-macros": "^2.4.12",
+    "unplugin-vue-macros": "^2.4.13",
     "unplugin-vue-markdown": "^0.24.2",
     "v-calendar": "^3.0.3",
     "v-wave": "^1.5.1",
@@ -191,12 +191,6 @@
     "vue3-google-map": "^0.17.0",
     "yup": "^1.2.0",
     "zod": "^3.22.2"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npm run lint-staged"
-  },
-  "lint-staged": {
-    "*": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "msw": {
     "workerDirectory": "public"

@@ -10,8 +10,8 @@ export interface Attendee {
 export interface BillTo {
   FirstName?: string
   LastName?: string
-  Address?: string
   Company?: string
+  Address?: string
   PhoneNumber?: string
   FaxNumber?: string | null
   City?: string
@@ -86,8 +86,20 @@ export enum SortOrder {
   ASC = 1,
 }
 
-interface TableState {
+export interface TableState {
   rows: any[]
   rowsPrePagination: any[]
   selectedRows: any[]
+}
+
+export interface MerchantAuthentication {
+  name: string
+  transactionKey: string
+}
+
+export interface TransactionRequest {
+  transactionType: string
+  amount: string
+  payment: Payment
+  billTo: BillTo
 }

@@ -1,5 +1,5 @@
 Sabahınız xeyir
-Egun on
+Egun on -
 Bon mati
 Goedemorgen
 Tere hommikust -
