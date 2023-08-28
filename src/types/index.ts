@@ -97,9 +97,9 @@ export interface MerchantAuthentication {
   transactionKey: string
 }
 
-export interface TransactionRequest {
-  transactionType: string
-  amount: string
-  payment: Payment
-  billTo: BillTo
-}
+// export interface TransactionRequest {
+//   transactionType: string
+//   amount: string
+//   payment: Payment
+//   billTo: BillTo
+// }

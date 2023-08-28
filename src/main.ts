@@ -1,4 +1,4 @@
-import process from 'node:process'
+// import process from 'node:process'
 
 import { ViteSSG } from 'vite-ssg'
 import { Icon } from '@iconify/vue'
@@ -6,13 +6,13 @@ import Preview from 'vite-plugin-vue-component-preview/client'
 
 import App from './App.vue'
 import './assets/style.css'
-import { worker } from './mocks/browser'
+// import { worker } from './mocks/browser'
 import type { UserModule } from './types'
 
 import routes from '~pages'
 
-if (process.env.NODE_ENV === 'development')
-  worker.start()
+// if (process.env.NODE_ENV === 'development')
+//   worker.start()
 
 export const createApp: any = ViteSSG(
   App,
