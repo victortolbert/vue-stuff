@@ -4,7 +4,7 @@ export interface CustomerProfileCreateRequest {
   merchantAuthentication: MerchantAuthentication
   refId?: string
   profile: Profile
-  validationMode: ValidationMode
+  validationMode?: ValidationMode
 }
 
 interface Profile {
@@ -15,17 +15,23 @@ interface Profile {
 }
 
 interface PaymentProfile {
-  customerType: string
+  customerType: 'individual' | 'business'
   payment: Payment
 }
 
 interface Payment {
-  creditCard: CreditCard
+  creditCard?: CreditCard
+  opaqueData?: OpaqueData
 }
 
 interface CreditCard {
   cardNumber: string
   expirationDate: string
+}
+
+interface OpaqueData {
+  dataDescriptor: string
+  dataValue: string
 }
 
 type ValidationMode = 'none' | 'testMode' | 'liveMode' | undefined

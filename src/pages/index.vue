@@ -29,16 +29,20 @@ const formPostUrl = 'https://localhost:5080/form-post'
 const apiLoginID = '8dzC8Xb48hf'
 const transactionKey = '5s59CE9D9Jb4Cmwr'
 const clientKey = '8nXVfbpEpDrKdgY37eULnXy4eACX5849XtNnvqk8L3aK4sE78PytKk3rnUaR685f'
+const exemplarUserId = '9999'
 
 const amex = '370000000000002'
 const visa = '4111111111111111'
 const mastercard = '5424000000000015'
 const cardDeclineZipCode = '46282'
 
-const customerProfileId = ref('514265598')
-const paymentProfileId = ref('914085527')
-const merchantCustomerId = ref('99999')
-const shippingProfileId = '514907980'
+const transId = '120002897042'
+
+const customerProfileId = ref('514306819')
+const merchantCustomerId = ref(exemplarUserId)
+
+const paymentProfileId = ref('521405605')
+const shippingProfileId = '514920113'
 
 const dataValue = ref('')
 const dataDescriptor = ref('')
@@ -912,7 +916,7 @@ function paymentFormUpdate(opaqueData: any) {
   <form
     id="paymentForm"
     ref="paymentFormElement"
-    method="GET"
+    method="POST"
     :action="formPostUrl"
   >
     <input id="dataValue" ref="dataValue" type="hidden" name="dataValue">

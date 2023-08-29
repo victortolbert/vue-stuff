@@ -5,7 +5,7 @@ import type { HostedPaymentPageGetRequest } from '~/types/HostedPaymentPageGetRe
 
 const apiLoginID = '8dzC8Xb48hf'
 const transactionKey = '5s59CE9D9Jb4Cmwr'
-const customerProfileId = ref('514265598')
+const customerProfileId = ref('514306819')
 const appUrl = 'https://localhost:5011'
 const requestUrl = 'https://apitest.authorize.net/xml/v1/request.api'
 const hostedPaymentPage = ref()
@@ -21,7 +21,10 @@ const hostedPaymentPage = ref()
 // const country = ref('US')
 
 const form = reactive({
-  customerProfileId: '514265598',
+  exemplarUserId: '9999',
+  customerProfileId: '514306819',
+  paymentProfile: '521405605',
+  authorizeNetPaymentProfile: '521405605',
   firstName: 'Victor',
   lastName: 'Tolbert',
   email: 'victor.tolbert@gmail.com',
