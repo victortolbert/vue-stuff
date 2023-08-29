@@ -1,6 +1,6 @@
-Sabahınız xeyir
+Sabahınız xeyir -
 Egun on -
-Bon mati
+Bon matin -
 Goedemorgen
 Tere hommikust -
 Góðan morgun
