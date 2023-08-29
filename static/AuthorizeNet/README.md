@@ -332,3 +332,13 @@ await fetch(url, {
   body: JSON.stringify(data)
 })
 ```
+
+ChargeCustomerProfile
+CreateCustomerPaymentProfile
+CreateCustomerProfile
+GetCustomerPaymentProfile
+GetCustomerProfile
+GetCustomerProfile
+GetPaymentInfoByUserId
+UpdateCustomerPaymentProfile
+UpdateCustomerProfile

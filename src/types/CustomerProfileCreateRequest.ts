@@ -2,15 +2,16 @@ import type { MerchantAuthentication } from '.'
 
 export interface CustomerProfileCreateRequest {
   merchantAuthentication: MerchantAuthentication
+  refId?: string
   profile: Profile
   validationMode: ValidationMode
 }
 
 interface Profile {
-  merchantCustomerId?: string
+  merchantCustomerId: string
   description?: string
   email?: string
-  paymentProfiles?: PaymentProfile[]
+  paymentProfiles?: PaymentProfile
 }
 
 interface PaymentProfile {

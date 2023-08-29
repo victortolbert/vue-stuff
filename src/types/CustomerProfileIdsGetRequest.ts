@@ -2,6 +2,7 @@ import type { MerchantAuthentication } from '.'
 
 export interface CustomerProfileIdsGetRequest {
   merchantAuthentication: MerchantAuthentication
+  refId?: string
 }
 
 // Example:

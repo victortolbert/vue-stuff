@@ -10,7 +10,7 @@ export interface PaymentProfileCreateRequest {
 interface PaymentProfile {
   billTo: BillTo
   payment: Payment
-  defaultPaymentProfile: string
+  defaultPaymentProfile: boolean
 }
 
 interface BillTo {

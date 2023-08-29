@@ -1,7 +1,9 @@
+import { ref } from 'vue'
 import type { MerchantAuthentication } from '.'
 
 export interface CustomerProfileFromTransactionCreateRequest {
-  MerchantAuthentication: MerchantAuthentication
+  merchantAuthentication: MerchantAuthentication
+  refId?: string
   transId: string
 }
 

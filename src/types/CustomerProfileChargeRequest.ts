@@ -10,10 +10,10 @@ interface TransactionRequest {
   transactionType: string
   amount: string
   profile: Profile
-  lineItems: LineItem[]
+  lineItems: LineItems
   processingOptions: ProcessingOptions
   subsequentAuthInformation: SubsequentAuthInformation
-  authorizationIndicatorType: string
+  authorizationIndicatorType: AuthorizationIndicatorType
 }
 
 interface Profile {
@@ -23,6 +23,10 @@ interface Profile {
 
 interface PaymentProfile {
   paymentProfileId: string
+}
+
+interface LineItems {
+  lineItem: LineItem
 }
 
 interface LineItem {
@@ -41,6 +45,10 @@ interface SubsequentAuthInformation {
   originalNetworkTransId: string
   originalAuthAmount: string
   reason: string
+}
+
+interface AuthorizationIndicatorType {
+  authorizationIndicator: string
 }
 
 // Example:

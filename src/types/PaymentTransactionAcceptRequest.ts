@@ -1,6 +1,6 @@
 import type { MerchantAuthentication } from '.'
 
-export interface TransactionPaymentAcceptRequest {
+export interface PaymentTransactionAcceptRequest {
   merchantAuthentication: MerchantAuthentication
   refId: string
   transactionRequest: TransactionRequest
@@ -10,12 +10,12 @@ interface TransactionRequest {
   transactionType: string
   amount: string
   payment: Payment
-  lineItems: LineItems
-  poNumber: string
-  billTo: BillTo
-  shipTo: ShipTo
-  customerIP: string
-  userFields: UserFields
+  lineItems?: LineItems
+  poNumber?: string
+  billTo?: BillTo
+  shipTo?: ShipTo
+  customerIP?: string
+  userFields?: UserFields
 }
 
 interface UserFields {
@@ -50,7 +50,7 @@ interface BillTo {
 }
 
 interface LineItems {
-  lineItem: LineItem[]
+  lineItem: LineItem
 }
 
 interface LineItem {

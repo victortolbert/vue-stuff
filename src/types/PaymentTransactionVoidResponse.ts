@@ -1,4 +1,4 @@
-export interface TransactionVoidResponse {
+export interface PaymentTransactionVoidResponse {
   transactionResponse: TransactionResponse
   refId: string
   messages: Messages

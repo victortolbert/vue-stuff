@@ -1,14 +1,25 @@
 import type { MerchantAuthentication } from '.'
 
-export interface TransactionVoidRequest {
+export interface PaymentTransactionRefundRequest {
   merchantAuthentication: MerchantAuthentication
-  refId: string
+  refId?: string
   transactionRequest: TransactionRequest
 }
 
 interface TransactionRequest {
   transactionType: string
+  amount: string
+  payment: Payment
   refTransId: string
+}
+
+interface Payment {
+  creditCard: CreditCard
+}
+
+interface CreditCard {
+  cardNumber: string
+  expirationDate: string
 }
 
 // Example:
@@ -20,7 +31,14 @@ interface TransactionRequest {
 //     },
 //     "refId": "123456",
 //     "transactionRequest": {
-//       "transactionType": "voidTransaction",
+//       "transactionType": "refundTransaction",
+//       "amount": "5.00",
+//       "payment": {
+//         "creditCard": {
+//           "cardNumber": "0015",
+//           "expirationDate": "XXXX"
+//         }
+//       },
 //       "refTransId": "1234567890"
 //     }
 //   }

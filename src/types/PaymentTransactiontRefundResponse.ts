@@ -1,4 +1,4 @@
-export interface TransactionRefundResponse {
+export interface PaymentTransactionRefundResponse {
   transactionResponse: TransactionResponse
   refId: string
   messages: Messages

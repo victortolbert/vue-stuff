@@ -22,6 +22,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import Markdown from 'unplugin-vue-markdown/vite'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
+import mkcert from 'vite-plugin-mkcert'
 
 // import WebfontDownload from 'vite-plugin-webfont-dl'
 
@@ -37,7 +38,7 @@ export default ({ mode }: any) => {
     },
 
     server: {
-      https: false,
+      https: true,
       port: Number(VITE_PORT),
       host: '0.0.0.0',
       open: true,
@@ -70,6 +71,7 @@ export default ({ mode }: any) => {
     },
 
     plugins: [
+      mkcert(),
       // WebfontDownload(),
       // VueDevTools(),
       Inspect(),

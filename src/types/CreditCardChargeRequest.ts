@@ -10,7 +10,7 @@ interface TransactionRequest {
   transactionType: string
   amount: string
   payment: Payment
-  lineItems: LineItem[]
+  lineItems: LineItems
   tax: Tax
   duty: Duty
   shipping: Shipping
@@ -34,6 +34,10 @@ interface CreditCard {
   cardNumber: string
   expirationDate: string
   cardCode: string
+}
+
+interface LineItems {
+  LineItem: LineItem
 }
 
 interface LineItem {
