@@ -4,7 +4,7 @@ Bon matin -
 Goedemorgen
 Tere hommikust -
 Góðan morgun
-Yadra vinaka
+Yadra vinaka -
 Magandang umaga po -
 Hyvää huomenta -
 Bos días
