@@ -17,4 +17,4 @@ Góðan dag
 Ụtụtụ ọma
 ullaakkut
 Buongiorno -
-Mwaramutse
+Mwaramutse -
