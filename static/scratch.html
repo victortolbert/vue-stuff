@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Accept.js Example</title>
+    <script src="https://jstest.authorize.net/v1/Accept.js" type="text/javascript"></script>
+</head>
+<body>
+    <form id="payment-form">
+        <label for="card-number">Card Number</label>
+        <input id="card-number" type="text" autocomplete="off" data-takeover-placeholder />
+        <label for="card-expiration-date">Expiration Date (MM/YY)</label>
+        <input id="card-expiration-date" type="text" autocomplete="off" data-takeover-placeholder />
+        <label for="card-cvv">CVV</label>
+        <input id="card-cvv" type="text" autocomplete="off" data-takeover-placeholder />
+        <button id="submit-button">Submit Payment</button>
+    </form>
+
+    <script type="text/javascript">
+// In this example, the publicClientKey variable is set to the Public Client Key generated using the API or the Merchant Interface . The tokenizeCardData method is called when the user clicks the “Submit Payment” button. This method captures the payment data and submits it to Authorize.net, which returns a payment nonce along with the order details . The payment nonce is then temporarily stored and used in place of the customer’s payment information in a follow-on createTransactionRequest API call .
+
+// For more information on how to use Accept.js, please refer to the API documentation and GitHub samples provided by Authorize.net .
+const publicClientKey = 'YOUR_PUBLIC_CLIENT_KEY_HERE'
+const client = new AuthorizeNetClient(publicClientKey)
+
+const form = document.getElementById('payment-form')
+const submitButton = document.getElementById('submit-button')
+
+submitButton.addEventListener('click', (event) => {
+  event.preventDefault()
+
+  client.tokenizeCardData(form, (response) => {
+    if (response.messages.resultCode === 'Error')
+      alert(response.messages.message[0].text)
+
+    else
+      var paymentNonce = response.opaqueData.dataValue
+    // Use the payment nonce in a follow-on createTransactionRequest API call
+  })
+})
+    </script>
+</body>
+</html>

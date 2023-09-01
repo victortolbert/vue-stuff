@@ -3,7 +3,7 @@ Egun on -
 Bon matin -
 Goedemorgen
 Tere hommikust -
-Góðan morgun
+Góðan morgun -
 Yadra vinaka -
 Magandang umaga po -
 Hyvää huomenta -
