@@ -1,0 +1,57 @@
+[
+  {
+    "Element": "merchantAuthentication",
+    "Description": "Required.\nContains merchant authentication information.\n",
+    "Format": ""
+  },
+  {
+    "Element": "name",
+    "Description": "Required.\nMerchant’s unique API Login ID.\nThe API Login ID is provided in the Merchant Interface and must be stored securely. The API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway.",
+    "Format": "String, up to 25 characters.\n"
+  },
+  {
+    "Element": "transactionKey",
+    "Description": "Required.\nMerchant’s unique Transaction Key.\nThe merchant Transaction Key is provided in the Merchant Interface and must be stored securely. The API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway.",
+    "Format": "String, up to 16 characters.\n"
+  },
+  {
+    "Element": "refId",
+    "Description": "Merchant-assigned reference ID for the request.\nIf included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications.",
+    "Format": "String, up to 20 characters.\n"
+  },
+  {
+    "Element": "batchId",
+    "Description": "The identification number for the batch.\n",
+    "Format": "Numeric string.\n"
+  },
+  {
+    "Element": "sorting",
+    "Description": "Contains sorting information.\n",
+    "Format": ""
+  },
+  {
+    "Element": "orderBy",
+    "Description": "Order of transactions in response.\n",
+    "Format": "String.Use id to sort by transaction ID. Use submitTimeUTC to sort by transaction submission time, in UTC.\n"
+  },
+  {
+    "Element": "orderDescending",
+    "Description": "Sort the transactions in descending order.\n",
+    "Format": "Boolean.Either true or false.\n"
+  },
+  {
+    "Element": "paging",
+    "Description": "Contains paging information.\n",
+    "Format": ""
+  },
+  {
+    "Element": "limit",
+    "Description": "The number of transactions per page.\nYou can request up to 1000 transactions per page of results.",
+    "Format": "Decimal, between 1 and 1000.\n"
+  },
+  {
+    "Element": "offset",
+    "Description": "The number of the page to return results from.\nFor example, if you use a limit of 100, setting offset to 1 will return the first 100 transactions, setting offset to 2 will return the second 100 transactions, and so forth.",
+    "Format": "Decimal, between 1 and 100000.\n"
+  }
+]

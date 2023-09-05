@@ -1,0 +1,20 @@
+POST https://apitest.authorize.net/xml/v1/request.api
+Content-Type: application/json
+
+{
+  "getTransactionListRequest": {
+      "merchantAuthentication": {
+          "name": "8dzC8Xb48hf",
+          "transactionKey": "5s59CE9D9Jb4Cmwr"
+      },
+    "batchId" : "6680535",
+    "sorting": {
+      "orderBy": "submitTimeUTC",
+      "orderDescending": "true"
+    },
+    "paging": {
+      "limit": "100",
+      "offset": "1"
+    }
+  }
+}

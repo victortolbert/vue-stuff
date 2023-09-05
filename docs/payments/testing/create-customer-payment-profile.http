@@ -1,0 +1,32 @@
+POST https://apitest.authorize.net/xml/v1/request.api
+Content-Type: application/json
+
+{
+  "createCustomerPaymentProfileRequest": {
+    "merchantAuthentication": {
+        "name": "8dzC8Xb48hf",
+        "transactionKey": "5s59CE9D9Jb4Cmwr"
+    },
+    "customerProfileId": "514324677",
+    "paymentProfile": {
+      "billTo": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "address": "123 Main St.",
+        "city": "Bellevue",
+        "state": "WA",
+        "zip": "98004",
+        "country": "US",
+        "phoneNumber": "000-000-0000"
+      },
+      "payment": {
+        "creditCard": {
+          "cardNumber": "4111111111111111",
+          "expirationDate": "2023-12"
+        }
+      },
+      "defaultPaymentProfile": false
+    },
+    "validationMode": "liveMode"
+  }
+}

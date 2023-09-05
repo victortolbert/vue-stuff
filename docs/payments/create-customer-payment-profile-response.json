@@ -1,0 +1,47 @@
+[
+  {
+    "Element": "refId",
+    "Description": "Merchant-assigned reference ID for the request.\nIf included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications.",
+    "Format": "String, up to 20 characters.\n"
+  },
+  {
+    "Element": "messages",
+    "Description": "This element contains a resultCode and one or more message elements.\n",
+    "Format": ""
+  },
+  {
+    "Element": "resultCode",
+    "Description": "States whether the request was handled successfully, or ended with an error.\n",
+    "Format": "String.Either Ok or Error.\n"
+  },
+  {
+    "Element": "message",
+    "Description": "Contains details about the result.\n",
+    "Format": ""
+  },
+  {
+    "Element": "code",
+    "Description": "The code number for the result.\nFor a comprehensive list of possible values, or to look up a returned value, see the Response Code Tool.",
+    "Format": "String, up to 6 characters.The first character is either an I for informational responses, or E for error responses. The remaining characters are numeric and indicate the type of informational or error response.\n"
+  },
+  {
+    "Element": "text",
+    "Description": "Text explanation of the code for the result.\n",
+    "Format": "String.\n"
+  },
+  {
+    "Element": "customerPaymentProfileId",
+    "Description": "Payment gateway assigned ID associated with the customer payment profile.\nThis output is present only for successful requests.",
+    "Format": "Numeric string.\n"
+  },
+  {
+    "Element": "validationDirectResponse",
+    "Description": "Contains detailed information about the result of the transaction.\nThis output is present only if the validationMode input parameter is passed with a value of testMode or liveMode.",
+    "Format": "String.\n"
+  },
+  {
+    "Element": "defaultPaymentProfile",
+    "Description": "Designates whether this payment profile is set as the default payment profile.\nThis is returned only if you designated this profile as the default in the request.",
+    "Format": "String.Defaults to true.\n"
+  }
+]

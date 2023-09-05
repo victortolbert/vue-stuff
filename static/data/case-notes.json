@@ -1,0 +1,38 @@
+[
+  {
+    "Salesforce Field Name": "Body",
+    "Field Type": "text area",
+    "Source Field": "note body",
+    "Description": "Body of the note. Limited to 32 KB"
+  },
+  {
+    "Salesforce Field Name": "IsDeleted",
+    "Field Type": "bool",
+    "Source Field": "‘False’",
+    "Description": "Indicates whether the object has been moved to the Recycle Bin (true) or not (false). Label is Deleted."
+  },
+  {
+    "Salesforce Field Name": "IsPrivate",
+    "Field Type": "bool",
+    "Source Field": "&nbsp;",
+    "Description": "If true, only the note owner or a user with the “Modify All Data” permission can view the note or query it via the API. Note that if a user who does not have the “Modify All Data” permission sets this field to true on a note that they do not own, then they can no longer query, delete, or update the note. Label is Private."
+  },
+  {
+    "Salesforce Field Name": "OwnerId",
+    "Field Type": "reference",
+    "Source Field": "NULL",
+    "Description": "&nbsp;"
+  },
+  {
+    "Salesforce Field Name": "ParentId",
+    "Field Type": "reference",
+    "Source Field": "Case ID",
+    "Description": "&nbsp;"
+  },
+  {
+    "Salesforce Field Name": "Title",
+    "Field Type": "string",
+    "Source Field": "&nbsp;",
+    "Description": "Title of the note."
+  }
+]

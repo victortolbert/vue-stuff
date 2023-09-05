@@ -1,0 +1,47 @@
+[
+  {
+    "Element": "merchantAuthentication",
+    "Description": "Required.\nContains merchant authentication information.\n",
+    "Format": ""
+  },
+  {
+    "Element": "name",
+    "Description": "Required.\nMerchant’s unique API Login ID.\nThe API Login ID is provided in the Merchant Interface and must be stored securely. The API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway.",
+    "Format": "String, up to 25 characters.\n"
+  },
+  {
+    "Element": "transactionKey",
+    "Description": "Required.\nMerchant’s unique Transaction Key.\nThe merchant Transaction Key is provided in the Merchant Interface and must be stored securely. The API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway.",
+    "Format": "String, up to 16 characters.\n"
+  },
+  {
+    "Element": "refId",
+    "Description": "Merchant-assigned reference ID for the request.\nIf included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications.",
+    "Format": "String, up to 20 characters.\n"
+  },
+  {
+    "Element": "customerProfileId",
+    "Description": "Payment gateway-assigned ID associated with the customer profile.\n",
+    "Format": "Numeric string.\n"
+  },
+  {
+    "Element": "merchantCustomerId",
+    "Description": "Merchant-assigned customer reference ID.\nMust be unique among all of the customer IDs stored with profiles to be able to retrieve.",
+    "Format": "String, up to 20 characters.\n"
+  },
+  {
+    "Element": "email",
+    "Description": "Merchant-assigned customer email address.\nMust be unique among all of the customer IDs stored with profiles to be able to retrieve.",
+    "Format": "String, up to 255 characters.\n"
+  },
+  {
+    "Element": "unmaskExpirationDate",
+    "Description": "Set to true if you want the expiration date to be returned unmasked.\n",
+    "Format": "Boolean.Either true or false.\n"
+  },
+  {
+    "Element": "includeIssuerInfo",
+    "Description": "When set to true, this optional field requests that the issuer number (IIN) be included in the response, in the field issuerNumber.\n",
+    "Format": "Boolean.Either true or false.\n"
+  }
+]

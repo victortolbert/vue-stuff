@@ -1,0 +1,76 @@
+# Sample HTTP Requests
+
+# cURL POST Example
+# curl -d “param1=value1&param2=value2” -H “Content-Type: application/json” -X POST http://localhost:3000/data
+
+# HTTPie POST Example
+# http POST http://localhost:3000/data ‘param1=value1’ ‘param2=value2’
+
+### GET Request with Query Parameters
+
+GET https://api.example.com/posts
+Content-Type: application/json
+Authorization: Bearer your_access_token
+Accept: application/json
+
+?limit=10
+&offset=0
+&category=technology
+
+### POST Request with JSON Body
+
+POST https://api.example.com/posts
+Content-Type: application/json
+Authorization: Bearer your_access_token
+
+{
+  "title": "New Post",
+  "content": "This is a sample post.",
+  "category": "technology"
+}
+
+### PUT Request with JSON Body
+
+PUT https://api.example.com/posts/123
+Content-Type: application/json
+Authorization: Bearer your_access_token
+
+{
+  "title": "Updated Post Title"
+}
+
+### DELETE Request
+
+DELETE https://api.example.com/posts/123
+Authorization: Bearer your_access_token
+
+### GET Request with Headers
+
+GET https://api.example.com/user/profile
+Authorization: Bearer your_access_token
+Accept: application/json
+
+### POST Request with Form Data
+
+POST https://api.example.com/upload
+Authorization: Bearer your_access_token
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="sample.jpg"
+Content-Type: image/jpeg
+
+[Binary Data]
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### PATCH Request with JSON Body
+
+PATCH https://api.example.com/user/settings
+Authorization: Bearer your_access_token
+Content-Type: application/json
+
+{
+  "notifications": true,
+  "theme": "dark"
+}

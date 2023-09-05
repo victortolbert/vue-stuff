@@ -1,0 +1,13 @@
+POST https://apitest.authorize.net/xml/v1/request.api
+Content-Type: application/json
+
+{
+    "getSettledBatchListRequest": {
+        "merchantAuthentication": {
+            "name": "8dzC8Xb48hf",
+            "transactionKey": "5s59CE9D9Jb4Cmwr"
+        },
+        "firstSettlementDate": "2020-05-01T16:00:00Z",
+        "lastSettlementDate": "2020-05-31T16:00:00Z"
+    }
+}

@@ -1,0 +1,192 @@
+[
+  {
+    "Element": "refId",
+    "Description": "Merchant-assigned reference ID for the request.\nIf included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications.",
+    "Format": "String, up to 20 characters.\n"
+  },
+  {
+    "Element": "messages",
+    "Description": "This element contains a resultCode and one or more message elements.\n",
+    "Format": ""
+  },
+  {
+    "Element": "resultCode",
+    "Description": "States whether the request was handled successfully, or ended with an error.\n",
+    "Format": "String.Either Ok or Error.\n"
+  },
+  {
+    "Element": "message",
+    "Description": "Contains details about the result.\n",
+    "Format": ""
+  },
+  {
+    "Element": "code",
+    "Description": "The code number for the result.\nFor a comprehensive list of possible values, or to look up a returned value, see the Response Code Tool.",
+    "Format": "String, up to 6 characters.The first character is either an I for informational responses, or E for error responses. The remaining characters are numeric and indicate the type of informational or error response.\n"
+  },
+  {
+    "Element": "text",
+    "Description": "Text explanation of the code for the result.\n",
+    "Format": "String.\n"
+  },
+  {
+    "Element": "batchList",
+    "Description": "Contains information for all batches\nThe batch list is sorted by batch id in ascending order.",
+    "Format": ""
+  },
+  {
+    "Element": "batch",
+    "Description": "Contains information specific to one batch.\n",
+    "Format": ""
+  },
+  {
+    "Element": "batchId",
+    "Description": "The identification number for the batch.\n",
+    "Format": "Numeric string.\n"
+  },
+  {
+    "Element": "settlementTimeUTC",
+    "Description": "Date and time when the batch was settled, expressed in UTC.\n",
+    "Format": "String.Use XML dateTime (YYYY-MM-DDThh:mm:ss) formatting.\n"
+  },
+  {
+    "Element": "settlementTimeLocal",
+    "Description": "Date and time when the batch was settled, expressed in merchant’s local time zone.\nThis element returns the time in the merchant time zone as set in the Merchant Interface.To update the time zone, log in to the Merchant Interface and click Account &gt; Settings &gt; Time Zone.",
+    "Format": "String.Use XML dateTime (YYYY-MM-DDThh:mm:ss) formatting.\n"
+  },
+  {
+    "Element": "settlementState",
+    "Description": "Status of the batch.\n",
+    "Format": "String.Either settledSuccessfully, settlementError, or pendingSettlement.\n"
+  },
+  {
+    "Element": "paymentMethod",
+    "Description": "Indicates whether the batch contains credit card transactions or eCheck.Net transactions.\nSince credit cards and electronic checks have different settlement and clearance processes, we create separate batches for credit card transactions and eCheck.Net transactions.",
+    "Format": "String.Either creditCard or eCheck.\n"
+  },
+  {
+    "Element": "marketType",
+    "Description": "The market type of the batch.\nSince e-commerce, MOTO, and retail transactions have different processing rules, we create separate batches for e-commerce transactions, MOTO transactions, and retail transactions.",
+    "Format": "String.Either eCommerce, MOTO, or Retail\n"
+  },
+  {
+    "Element": "product",
+    "Description": "Indicates whether the card was present for the transaction.\n",
+    "Format": "String.Either Card Present or Card Not Present.\n"
+  },
+  {
+    "Element": "statistics",
+    "Description": "Contains one or more statistic elements.\n",
+    "Format": ""
+  },
+  {
+    "Element": "statistic",
+    "Description": "One statistic element is returned for each accountType.\nReturned only if the value of includeStatistics is true. The specific fields depend on the value of accountType.Please note that PayPal batches do not currently return accountType in their statistic element.",
+    "Format": ""
+  },
+  {
+    "Element": "accountType",
+    "Description": "The account type used for the transaction.\n",
+    "Format": "String.Either Visa, Mastercard, Discover, AmericanExpress, DinersClub, JCB, or eCheck.\n"
+  },
+  {
+    "Element": "chargeAmount",
+    "Description": "The total charge amount for the specified accountType in a batch, expressed in the merchant's default currency.\n",
+    "Format": "Decimal.\n"
+  },
+  {
+    "Element": "chargeCount",
+    "Description": "The number of charge transactions for the specified accountType in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "refundAmount",
+    "Description": "The total refund amount for the specified accountType in a batch, expressed in the merchant's default currency.\n",
+    "Format": "Decimal.\n"
+  },
+  {
+    "Element": "refundCount",
+    "Description": "The number of refund transactions for the specified accountType in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "voidCount",
+    "Description": "The number of voided transactions for the specified accountType in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "declineCount",
+    "Description": "The number of declined transactions for the specified accountType in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "errorCount",
+    "Description": "The number of errored transactions for the specified accountType in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "returnedItemAmount",
+    "Description": "The total amount of returned eCheck.Net transactions in a batch, expressed in the merchant's default currency.\n",
+    "Format": "Decimal.\n"
+  },
+  {
+    "Element": "returnedItemCount",
+    "Description": "The number of returned eCheck.Net transactions in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "chargebackAmount",
+    "Description": "The total amount of chargeback eCheck.Net transactions in a batch, expressed in the merchant's default currency.\n",
+    "Format": "Decimal.\n"
+  },
+  {
+    "Element": "chargebackCount",
+    "Description": "The number of chargeback eCheck.Net transactions in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "correctionNoticeCount",
+    "Description": "The number of Notices of Change received for eCheck.Net transactions in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "chargeChargeBackAmount",
+    "Description": "The total amount of charge eCheck.Net transactions charged back in a batch, expressed in the merchant's default currency.\n",
+    "Format": "Decimal.\n"
+  },
+  {
+    "Element": "chargeChargeBackCount",
+    "Description": "The number of charge eCheck.Net transactions charged back in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "refundChargeBackAmount",
+    "Description": "The total amount of refund eCheck.Net transactions charged back in a batch, expressed in the merchant's default currency.\n",
+    "Format": "Decimal.\n"
+  },
+  {
+    "Element": "refundChargeBackCount",
+    "Description": "The number of refund eCheck.Net transactions charged back in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "chargeReturnedItemsAmount",
+    "Description": "The total amount of returned charge eCheck.Net transactions in a batch, expressed in the merchant's default currency.\n",
+    "Format": "Decimal.\n"
+  },
+  {
+    "Element": "chargeReturnedItemsCount",
+    "Description": "The number of returned charge eCheck.Net transactions in a batch.\n",
+    "Format": "Integer.\n"
+  },
+  {
+    "Element": "refundReturnedItemsAmount",
+    "Description": "The total amount of returned refund eCheck.Net transactions in a batch, expressed in the merchant's default currency.\n",
+    "Format": "Decimal.\n"
+  },
+  {
+    "Element": "refundReturnedItemsCount",
+    "Description": "The number of returned refund eCheck.Net transactions in a batch.\n",
+    "Format": "Integer.\n"
+  }
+]

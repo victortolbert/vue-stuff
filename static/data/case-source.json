@@ -1,0 +1,44 @@
+[
+  {
+    "Name": "User Input",
+    "Source Abbreviation": "UI",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "1"
+  },
+  {
+    "Name": "Bulk Import",
+    "Source Abbreviation": "BI",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "2"
+  },
+  {
+    "Name": "External Form",
+    "Source Abbreviation": "EF",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "3"
+  },
+  {
+    "Name": "Xactware Import",
+    "Source Abbreviation": "XI",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "4"
+  },
+  {
+    "Name": "Symbility Import",
+    "Source Abbreviation": "SI",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "5"
+  },
+  {
+    "Name": "Hancock Portal",
+    "Source Abbreviation": "HP",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "6"
+  },
+  {
+    "Name": "Prn Api",
+    "Source Abbreviation": "PA",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "7"
+  }
+]

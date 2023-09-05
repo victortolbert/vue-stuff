@@ -1,0 +1,94 @@
+[
+  {
+    "User Roles ": "System Administrator",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Business Administrator",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Account/Provider Manager",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Contact Agent",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Dispatcher",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Claim Reviewer",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Contact Lead",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Dispatcher Lead",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Bookkeeper Lead",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Internal QA Review",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Internal QA Review Lead",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Claim Reviewer Lead",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Bookkeeper",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Service Director",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Service Manager",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Service Tech",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Service Tech 2",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Case Manager",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Case Manager Lead",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Staff Adjuster",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Independent Adjuster",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Adjuster Director",
+    "&nbsp;": "&nbsp;"
+  },
+  {
+    "User Roles ": "Adjuster Manager",
+    "&nbsp;": "&nbsp;"
+  }
+]

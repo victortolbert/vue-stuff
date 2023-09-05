@@ -1,0 +1,77 @@
+[
+  {
+    "Name": "Triage",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "1"
+  },
+  {
+    "Name": "Call Queue",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "2"
+  },
+  {
+    "Name": "Schedule",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "3"
+  },
+  {
+    "Name": "Assigned",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "4"
+  },
+  {
+    "Name": "Confirmed",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "5"
+  },
+  {
+    "Name": "Working",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "6"
+  },
+  {
+    "Name": "Review",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "7"
+  },
+  {
+    "Name": "Complete",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "8"
+  },
+  {
+    "Name": "Billed",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "9"
+  },
+  {
+    "Name": "Closed",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "10"
+  },
+  {
+    "Name": "Hold",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "11"
+  },
+  {
+    "Name": "Archived",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "12"
+  },
+  {
+    "Name": "Pending",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "13"
+  },
+  {
+    "Name": "Failed Validation",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "14"
+  },
+  {
+    "Name": "Technician Review",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "15"
+  }
+]

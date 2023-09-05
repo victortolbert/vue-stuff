@@ -1,0 +1,42 @@
+[
+  {
+    "Name": "Billing",
+    "Id in Uptima Dev": "&nbsp;",
+    "Exemplar External Id": "1"
+  },
+  {
+    "Name": "Delay in Deliverables",
+    "Id in Uptima Dev": "&nbsp;",
+    "Exemplar External Id": "2"
+  },
+  {
+    "Name": "Photos Missing",
+    "Id in Uptima Dev": "&nbsp;",
+    "Exemplar External Id": "3"
+  },
+  {
+    "Name": "Processing Error",
+    "Id in Uptima Dev": "&nbsp;",
+    "Exemplar External Id": "4"
+  },
+  {
+    "Name": "Professionalism",
+    "Id in Uptima Dev": "&nbsp;",
+    "Exemplar External Id": "5"
+  },
+  {
+    "Name": "Scheduling Error",
+    "Id in Uptima Dev": "&nbsp;",
+    "Exemplar External Id": "6"
+  },
+  {
+    "Name": "Scope Missing / Inaccurate",
+    "Id in Uptima Dev": "&nbsp;",
+    "Exemplar External Id": "7"
+  },
+  {
+    "Name": "Tardy or No Show",
+    "Id in Uptima Dev": "&nbsp;",
+    "Exemplar External Id": "8"
+  }
+]

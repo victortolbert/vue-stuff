@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import axios from 'axios'
 import type { MerchantAuthentication } from '~/types'
+import { supabase } from '~/utilities/supabaseClient'
 
 import type { CustomerProfileCreateRequest } from '~/types/CustomerProfileCreateRequest'
 import type { CustomerProfileGetRequest } from '~/types/CustomerProfileGetRequest'
@@ -23,6 +24,72 @@ import type { PaymentTransactionVoidRequest } from '~/types/PaymentTransactionVo
 
 import type { HostedPaymentPageGetRequest } from '~/types/HostedPaymentPageGetRequest'
 import type { HostedProfilePageGetRequest } from '~/types/HostedProfilePageGetRequest'
+
+const countries = ref<{ name: string; id: string }[]>([
+  {
+    name: '',
+    id: '',
+  },
+])
+
+const user = ref([])
+const loading = ref(false)
+// const email = 'test_user@email.com'
+const email = ref('victor.tolbert@gmail.com')
+
+async function handleLogin() {
+  try {
+    loading.value = true
+    const { error } = await supabase.auth.signInWithOtp({ email: email.value })
+
+    if (error)
+      throw error
+
+    alert('Check your email for the login link!')
+  }
+
+  catch (error: any) {
+    alert(error.error_description || error.message)
+  }
+
+  finally {
+    loading.value = false
+  }
+}
+
+async function getCountries() {
+  const { data } = await supabase.from('countries').select()
+
+  countries.value = data
+}
+
+onMounted(() => {
+  getCountries()
+})
+
+// Get Auth user
+// Get the JSON object for the logged in user.
+// const { data: { user } } = await supabase.auth.getUser()
+// console.log({ user })
+
+// Update user
+async function updateUser() {
+  const { data, error } = await supabase.auth.updateUser({
+    email: 'new@email.com',
+    password: 'new-password',
+    data: { hello: 'world' },
+  })
+}
+
+// User logout
+async function logout() {
+  const { error } = await supabase.auth.signOut()
+}
+
+// Send a user an invite over email
+async function sendInvite(email: string) {
+  const { data, error } = await supabase.auth.api.inviteUserByEmail(email)
+}
 
 const url = 'https://apitest.authorize.net/xml/v1/request.api'
 const formPostUrl = 'https://localhost:5080/form-post'
@@ -69,7 +136,7 @@ const paymentProfile = ref()
 const transaction = ref()
 
 const description = 'Profile description here'
-const email = 'test_user@email.com'
+
 const validationMode = 'liveMode'
 const opaqueData = ref()
 
@@ -113,7 +180,7 @@ const createCustomerProfileRequest: CustomerProfileCreateRequest = {
   profile: {
     merchantCustomerId: merchantCustomerId.value,
     description,
-    email,
+    email: email.value,
     paymentProfiles: {
       customerType: 'individual',
       payment: {
@@ -135,7 +202,7 @@ const createCustomerProfileRequest2: CustomerProfileCreateRequest = {
   profile: {
     merchantCustomerId: merchantCustomerId.value,
     description,
-    email,
+    email: email.value,
     paymentProfiles: {
       customerType: 'individual',
       payment: {
@@ -913,179 +980,179 @@ function paymentFormUpdate(opaqueData: any) {
 </script>
 
 <template>
-  <form
-    id="paymentForm"
-    ref="paymentFormElement"
-    method="POST"
-    :action="formPostUrl"
-  >
-    <input id="dataValue" ref="dataValue" type="hidden" name="dataValue">
-    <input id="dataDescriptor" ref="dataDescriptor" type="hidden" name="dataDescriptor">
+  <div>
+    <ul>
+      <li v-for="country in countries" :key="country.id">
+        {{ country.name }}
+      </li>
+    </ul>
 
-    <div class="grid max-w-lg w-full gap-4">
-      <fieldset class="grid gap-4">
-        <div class="form-group">
-          <label for="cardNumber">Card Number</label>
-          <div class="mt-1">
-            <input id="cardNumber" ref="cardNumberElement" v-model="cardNumber" type="text" name="cardNumber" placeholder="cardNumber">
+    <form
+      id="paymentForm"
+      ref="paymentFormElement"
+      method="POST"
+      :action="formPostUrl"
+    >
+      <input id="dataValue" ref="dataValue" type="hidden" name="dataValue">
+      <input id="dataDescriptor" ref="dataDescriptor" type="hidden" name="dataDescriptor">
+      <div class="grid max-w-lg w-full gap-4">
+        <fieldset class="grid gap-4">
+          <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <div class="mt-1">
+              <input id="cardNumber" ref="cardNumberElement" v-model="cardNumber" type="text" name="cardNumber" placeholder="cardNumber">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="expMonth">Exp. Month</label>
-          <div class="mt-1">
-            <input id="expMonth" ref="expMonthElement" v-model="expMonth" type="text" name="expMonth" placeholder="expMonth">
+          <div class="form-group">
+            <label for="expMonth">Exp. Month</label>
+            <div class="mt-1">
+              <input id="expMonth" ref="expMonthElement" v-model="expMonth" type="text" name="expMonth" placeholder="expMonth">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="expYear">Exp. Year</label>
-          <div class="mt-1">
-            <input id="expYear" ref="expYearElement" v-model="expYear" type="text" name="expYear" placeholder="expYear">
+          <div class="form-group">
+            <label for="expYear">Exp. Year</label>
+            <div class="mt-1">
+              <input id="expYear" ref="expYearElement" v-model="expYear" type="text" name="expYear" placeholder="expYear">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="cardCode">Card Code</label>
-          <div class="mt-1">
-            <input id="cardCode" ref="cardCodeElement" v-model="cardCode" type="text" name="cardCode" placeholder="cardCode">
+          <div class="form-group">
+            <label for="cardCode">Card Code</label>
+            <div class="mt-1">
+              <input id="cardCode" ref="cardCodeElement" v-model="cardCode" type="text" name="cardCode" placeholder="cardCode">
+            </div>
           </div>
+        </fieldset>
+        <button type="button" @click="sendPaymentDataToAnet()">
+          Pay
+        </button>
+      </div>
+    </form>
+    <form action="" class="grid mt-8 max-w-lg w-full gap-4">
+      <div>
+        <label for="customer-profile-id">
+          Customer Profile ID
+        </label>
+        <div>
+          <input id="customer-profile-id" v-model="customerProfileId" type="text">
         </div>
-      </fieldset>
-      <button type="button" @click="sendPaymentDataToAnet()">
-        Pay
-      </button>
-    </div>
-  </form>
-
-  <form action="" class="grid mt-8 max-w-lg w-full gap-4">
-    <div>
-      <label for="customer-profile-id">
-        Customer Profile ID
-      </label>
+      </div>
       <div>
-        <input id="customer-profile-id" v-model="customerProfileId" type="text">
+        <label for="payment-profile-id">Customer Payment Profile ID</label>
+        <div class="mt-1">
+          <input id="payment-profile-id" v-model="paymentProfileId" type="text">
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="payment-profile-id">Customer Payment Profile ID</label>
-      <div class="mt-1">
-        <input id="payment-profile-id" v-model="paymentProfileId" type="text">
-      </div>
-    </div>
-    <div>
-      <label for="merchant-customer-id">Merchant Customer ID</label>
-      <div class="mt-1">
-        <input id="merchant-customer-id" v-model="merchantCustomerId" type="text">
-      </div>
-    </div>
-
-    <div>
-      <label for="customer-profile-id">
-        Customer Profile ID
-      </label>
       <div>
-        <select id="customer-profile-id" v-model="customerProfileId">
-          <option value="514265598">
-            514265598
-          </option>
-          <option value="514265598">
-            514265598
-          </option>
-          <option value="514265598">
-            514265598
-          </option>
-        </select>
+        <label for="merchant-customer-id">Merchant Customer ID</label>
+        <div class="mt-1">
+          <input id="merchant-customer-id" v-model="merchantCustomerId" type="text">
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="merchant-customer-id">
-        Merchant Customer ID
-      </label>
       <div>
-        <select id="merchant-customer-id" v-model="merchantCustomerId">
-          <option value="99999">
-            99999
-          </option>
-          <option value="070766">
-            070766
-          </option>
-          <option value="7766">
-            7766
-          </option>
-          <option value="513454">
-            513454
-          </option>
-        </select>
+        <label for="customer-profile-id">
+          Customer Profile ID
+        </label>
+        <div>
+          <select id="customer-profile-id" v-model="customerProfileId">
+            <option value="514265598">
+              514265598
+            </option>
+            <option value="514265598">
+              514265598
+            </option>
+            <option value="514265598">
+              514265598
+            </option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="payment-profile-id">
-        Payment Profile ID
-      </label>
       <div>
-        <select id="payment-profile-id" v-model="paymentProfileId">
-          <option value="914085527">
-            914085527
-          </option>
-          <option value="513454">
-            513454
-          </option>
-        </select>
+        <label for="merchant-customer-id">
+          Merchant Customer ID
+        </label>
+        <div>
+          <select id="merchant-customer-id" v-model="merchantCustomerId">
+            <option value="99999">
+              99999
+            </option>
+            <option value="070766">
+              070766
+            </option>
+            <option value="7766">
+              7766
+            </option>
+            <option value="513454">
+              513454
+            </option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label for="payment-profile-id">
+          Payment Profile ID
+        </label>
+        <div>
+          <select id="payment-profile-id" v-model="paymentProfileId">
+            <option value="914085527">
+              914085527
+            </option>
+            <option value="513454">
+              513454
+            </option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <div class="text-xs">
+      <div class="mt-8 flex gap-8">
+        <button @click="getCustomerProfile">
+          Get Customer Profile
+        </button>
+        <button @click="getCustomerProfileIds">
+          Get Customer Profile Ids
+        </button>
+        <button @click="createCustomerProfile">
+          Create Customer Profile
+        </button>
+        <button @click="updateCustomerProfile">
+          Update Customer Profile
+        </button>
+        <button @click="deleteCustomerProfile">
+          Delete Customer Profile
+        </button>
+      </div>
+      <div class="mt-8 flex gap-8">
+        <button @click="createPaymentProfile">
+          Create Payment Profile
+        </button>
+        <button @click="getPaymentProfile">
+          Get Payment Profile
+        </button>
+        <button @click="getPaymentProfileList">
+          Get Payment Profile List
+        </button>
+        <button @click="updatePaymentProfile">
+          Update Payment Profile
+        </button>
+        <button @click="deletePaymentProfile">
+          Delete Payment Profile
+        </button>
       </div>
     </div>
-  </form>
-
-  <div class="text-xs">
-    <div class="mt-8 flex gap-8">
-      <button @click="getCustomerProfile">
-        Get Customer Profile
-      </button>
-
-      <button @click="getCustomerProfileIds">
-        Get Customer Profile Ids
-      </button>
-
-      <button @click="createCustomerProfile">
-        Create Customer Profile
-      </button>
-
-      <button @click="updateCustomerProfile">
-        Update Customer Profile
-      </button>
-      <button @click="deleteCustomerProfile">
-        Delete Customer Profile
-      </button>
+    <div class="grid grid-cols-4 mt-8 gap-4 text-xs">
+      <section v-if="customerProfile">
+        <pre>{{ customerProfile }}</pre>
+      </section>
+      <section v-if="customerProfileIds">
+        <pre>{{ customerProfileIds }}</pre>
+      </section>
+      <section v-if="paymentProfile">
+        <pre>{{ paymentProfile }}</pre>
+      </section>
+      <section v-if="paymentProfileList">
+        <pre>{{ paymentProfileList }}</pre>
+      </section>
     </div>
-    <div class="mt-8 flex gap-8">
-      <button @click="createPaymentProfile">
-        Create Payment Profile
-      </button>
-      <button @click="getPaymentProfile">
-        Get Payment Profile
-      </button>
-      <button @click="getPaymentProfileList">
-        Get Payment Profile List
-      </button>
-      <button @click="updatePaymentProfile">
-        Update Payment Profile
-      </button>
-      <button @click="deletePaymentProfile">
-        Delete Payment Profile
-      </button>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-4 mt-8 gap-4 text-xs">
-    <section v-if="customerProfile">
-      <pre>{{ customerProfile }}</pre>
-    </section>
-    <section v-if="customerProfileIds">
-      <pre>{{ customerProfileIds }}</pre>
-    </section>
-    <section v-if="paymentProfile">
-      <pre>{{ paymentProfile }}</pre>
-    </section>
-    <section v-if="paymentProfileList">
-      <pre>{{ paymentProfileList }}</pre>
-    </section>
   </div>
 </template>
 

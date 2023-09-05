@@ -1,0 +1,72 @@
+[
+  {
+    "Salesforce Field Name": "HCC_Business_Line__c",
+    "Source System Field Name": "Business Lines",
+    "Field Type": "Pick List with multiple values",
+    "Field Values": "Inspection &amp; Estimates, Network Services, Contents",
+    "Trigger/Condition Logic with Target Field/Object": "&nbsp;"
+  },
+  {
+    "Salesforce Field Name": "HCC_Estimating_Platform__c",
+    "Source System Field Name": "Estimating Platform(Inspection/Estimates))",
+    "Field Type": "Pick List ",
+    "Field Values": "XactAnalysis , Corelogic",
+    "Trigger/Condition Logic with Target Field/Object": "&nbsp;"
+  },
+  {
+    "Salesforce Field Name": "N/A",
+    "Source System Field Name": "Account Type",
+    "Field Type": "Pick List ",
+    "Field Values": "Carrier, Independent Adjuster, Provider",
+    "Trigger/Condition Logic with Target Field/Object": "&nbsp;"
+  },
+  {
+    "Salesforce Field Name": "N/A",
+    "Source System Field Name": "Outbound Contact Preferences",
+    "Field Type": "Picklist with multiple values",
+    "Field Values": "SMS, Outbound Calls, Emails",
+    "Trigger/Condition Logic with Target Field/Object": "&nbsp;"
+  },
+  {
+    "Salesforce Field Name": "&nbsp;",
+    "Source System Field Name": "&nbsp;",
+    "Field Type": "&nbsp;",
+    "Field Values": "Project created, Inspection scheduled, Inspection assigned, Claim deliverables, Notification to Hancock, Inspection rescheduled.",
+    "Trigger/Condition Logic with Target Field/Object": "&nbsp;"
+  },
+  {
+    "Salesforce Field Name": "&nbsp;",
+    "Source System Field Name": "Preferred vendors/ENG firms",
+    "Field Type": "Pick List ",
+    "Field Values": " ",
+    "Trigger/Condition Logic with Target Field/Object": "&nbsp;"
+  },
+  {
+    "Salesforce Field Name": "&nbsp;",
+    "Source System Field Name": "ITEL Requirements",
+    "Field Type": "Pick List ",
+    "Field Values": "&nbsp;",
+    "Trigger/Condition Logic with Target Field/Object": "`"
+  },
+  {
+    "Salesforce Field Name": "&nbsp;",
+    "Source System Field Name": "Email Notification",
+    "Field Type": "Check Boxes and able to select multiple values",
+    "Field Values": "Project CreatedInspection Scheduled Inspection Assigned Claim deliverablesNotification to HancockInspection Rescheduled",
+    "Trigger/Condition Logic with Target Field/Object": "When claim is initially entered in the systemWhen inspection is scheduled with a date and time When a technician is assigned the inspection After inspection is completed and technician enters his observations into the system. (photos, reports , diagram and Hover or EV as the case may be) ?Whenever the scheduled inspection either time or date are changed and a new date and time are provided.&nbsp;"
+  },
+  {
+    "Salesforce Field Name": "HCC_Hover_Report_Type__c",
+    "Source System Field Name": "HoverReportType",
+    "Field Type": "Y/N check box",
+    "Field Values": "Hover  PDFHover XML",
+    "Trigger/Condition Logic with Target Field/Object": "If yes the choose from picklist. "
+  },
+  {
+    "Salesforce Field Name": "&nbsp;",
+    "Source System Field Name": "&nbsp;",
+    "Field Type": "&nbsp;",
+    "Field Values": "&nbsp;",
+    "Trigger/Condition Logic with Target Field/Object": "&nbsp;"
+  }
+]

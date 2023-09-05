@@ -1,0 +1,27 @@
+[
+  {
+    "Exemplar Id": "1",
+    "Report Type": "Not Enabled",
+    "SalesForce Id": "&nbsp;"
+  },
+  {
+    "Exemplar Id": "2",
+    "Report Type": "Roof Only",
+    "SalesForce Id": "&nbsp;"
+  },
+  {
+    "Exemplar Id": "3",
+    "Report Type": "Complete",
+    "SalesForce Id": "&nbsp;"
+  },
+  {
+    "Exemplar Id": "4",
+    "Report Type": "Roof Only - XML",
+    "SalesForce Id": "&nbsp;"
+  },
+  {
+    "Exemplar Id": "5",
+    "Report Type": "Complete - XML",
+    "SalesForce Id": "&nbsp;"
+  }
+]

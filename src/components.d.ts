@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Auth: typeof import('./components/Auth.vue')['default']
     Autocomplete: typeof import('./components/content/Autocomplete.vue')['default']
     Avatar: typeof import('./components/Avatar.vue')['default']
     Badge: typeof import('./components/Badge.vue')['default']
@@ -70,6 +71,11 @@ declare module 'vue' {
     IconTooling: typeof import('./components/icons/IconTooling.vue')['default']
     IconVercel: typeof import('./components/icons/IconVercel.vue')['default']
     LoginForm: typeof import('./components/app/forms/LoginForm.vue')['default']
+    LoginWithEmailAndPassword: typeof import('./components/LoginWithEmailAndPassword.vue')['default']
+    LoginWithEmailPassword: typeof import('./components/LoginWithEmailPassword.vue')['default']
+    LoginWithGithub: typeof import('./components/LoginWithGithub.vue')['default']
+    LoginWithMagicLink: typeof import('./components/LoginWithMagicLink.vue')['default']
+    LoginWithOauthProvider: typeof import('./components/LoginWithOauthProvider.vue')['default']
     LogoExemplar: typeof import('./components/logos/LogoExemplar.vue')['default']
     LogoHancockMark: typeof import('./components/logos/LogoHancockMark.vue')['default']
     LogoHancockMarkDark: typeof import('./components/logos/LogoHancockMarkDark.vue')['default']
@@ -90,6 +96,7 @@ declare module 'vue' {
     PageHeader: typeof import('./components/page/PageHeader.vue')['default']
     PageLayout: typeof import('./components/page/PageLayout.vue')['default']
     PageSection: typeof import('./components/page/PageSection.vue')['default']
+    PasswordRecovery: typeof import('./components/PasswordRecovery.vue')['default']
     PaymentForm: typeof import('./components/payment/PaymentForm.vue')['default']
     Popover: typeof import('./components/content/Popover.vue')['default']
     Post: typeof import('./components/Post.vue')['default']
@@ -104,6 +111,8 @@ declare module 'vue' {
     Select: typeof import('./components/content/Select.vue')['default']
     Sidebar: typeof import('./components/Sidebar.vue')['default']
     SigninForm: typeof import('./components/app/forms/SigninForm.vue')['default']
+    Signup: typeof import('./components/signup.vue')['default']
+    SignUp: typeof import('./components/SignUp.vue')['default']
     SomeComponent: typeof import('./components/content/SomeComponent.vue')['default']
     Tabs: typeof import('./components/content/Tabs.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']

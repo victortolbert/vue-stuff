@@ -1,0 +1,17 @@
+POST https://apitest.authorize.net/xml/v1/request.api
+Content-Type: application/json
+
+{
+    "updateCustomerProfileRequest": {
+        "merchantAuthentication": {
+            "name": "8dzC8Xb48hf",
+            "transactionKey": "5s59CE9D9Jb4Cmwr"
+        },
+        "profile": {
+            "merchantCustomerId": "custId123",
+            "description": "some description",
+            "email": "newaddress@example.com",
+            "customerProfileId": "514324677"
+        }
+    }
+}

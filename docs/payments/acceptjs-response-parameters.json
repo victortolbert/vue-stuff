@@ -1,0 +1,37 @@
+[
+  {
+    "Property": "opaqueData.dataDescriptor",
+    "Type": "String",
+    "Description": "This value must be passed to the Authorize.net API, along with dataValue, to represent the card details."
+  },
+  {
+    "Property": "opaqueData.dataValue",
+    "Type": "String",
+    "Description": "This value is the payment nonce that you received from Authorize.net. This value must be passed to the Authorize.net API, along with dataDescriptor, to represent the card details. The nonce is valid for 15 minutes."
+  },
+  {
+    "Property": "encryptedCardData.cardNumber",
+    "Type": "String",
+    "Description": "This is only returned when using the hosted form. Last four digits of the card."
+  },
+  {
+    "Property": "encryptedCardData.expDate",
+    "Type": "String",
+    "Description": "This is only returned when using the hosted form. Expiration date submitted with the card."
+  },
+  {
+    "Property": "encryptedCardData.bin",
+    "Type": "String",
+    "Description": "This is only returned when using the hosted form. Issuer Identification Number (first six digits of the card number)."
+  },
+  {
+    "Property": "customerInformation.firstName",
+    "Type": "String",
+    "Description": "This is only returned when using the hosted form. Customer first name submitted with the card."
+  },
+  {
+    "Property": "customerInformation.lastName",
+    "Type": "String",
+    "Description": "This is only returned when using the hosted form. Customer last name submitted with the card."
+  }
+]

@@ -1,0 +1,135 @@
+[
+  {
+    "Name": "Great Lakes",
+    "Time Zone Operating Hours": "CDT",
+    "Id in UptimaDev": "0HhDN000000AsUd0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "16"
+  },
+  {
+    "Name": "Mid-Atlantic",
+    "Time Zone Operating Hours": "EDT",
+    "Id in UptimaDev": "0HhDN000000AsUh0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "14"
+  },
+  {
+    "Name": "Florida",
+    "Time Zone Operating Hours": "EDT",
+    "Id in UptimaDev": "0HhDN000000AsUc0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "34"
+  },
+  {
+    "Name": "Midwest",
+    "Time Zone Operating Hours": "CDT",
+    "Id in UptimaDev": "0HhDN000000AsUi0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "39"
+  },
+  {
+    "Name": "OK/AR Market",
+    "Time Zone Operating Hours": "CDT",
+    "Id in UptimaDev": "0HhDN000000AsUj0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "38"
+  },
+  {
+    "Name": "CAT",
+    "Time Zone Operating Hours": "&nbsp;",
+    "Id in UptimaDev": "0HhDN000000AsUN0A0",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "26"
+  },
+  {
+    "Name": "Training",
+    "Time Zone Operating Hours": "&nbsp;",
+    "Id in UptimaDev": "0HhDN000000AsUO0A0",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "22"
+  },
+  {
+    "Name": "Delta",
+    "Time Zone Operating Hours": "&nbsp;",
+    "Id in UptimaDev": "0HhDN000000AsUX0A0",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "13"
+  },
+  {
+    "Name": "Ohio Valley",
+    "Time Zone Operating Hours": "EDT",
+    "Id in UptimaDev": "0HhDN000000AsUw0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "15"
+  },
+  {
+    "Name": "Rockies",
+    "Time Zone Operating Hours": "MDT",
+    "Id in UptimaDev": "0HhDN000000AsUx0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "18"
+  },
+  {
+    "Name": "West Coast Territory",
+    "Time Zone Operating Hours": "PDT",
+    "Id in UptimaDev": "0HhDN000000AsUy0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "40"
+  },
+  {
+    "Name": "Northeast",
+    "Time Zone Operating Hours": "EDT",
+    "Id in UptimaDev": "0HhDN000000AsUr0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "19"
+  },
+  {
+    "Name": "Georgia",
+    "Time Zone Operating Hours": "EDT",
+    "Id in UptimaDev": "0HhDN000000AsUJ0A0",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "11"
+  },
+  {
+    "Name": "Carolinas",
+    "Time Zone Operating Hours": "EDT",
+    "Id in UptimaDev": "0HhDN000000AsUI0A0",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "12"
+  },
+  {
+    "Name": "Great Plains",
+    "Time Zone Operating Hours": "CDT",
+    "Id in UptimaDev": "0HhDN000000AsUK0A0",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "35"
+  },
+  {
+    "Name": "New England",
+    "Time Zone Operating Hours": "EDT",
+    "Id in UptimaDev": "0HhDN000000AsUm0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "24"
+  },
+  {
+    "Name": "North Texas Market",
+    "Time Zone Operating Hours": "CDT",
+    "Id in UptimaDev": "0HhDN000000AsUn0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "41"
+  },
+  {
+    "Name": "TN Valley",
+    "Time Zone Operating Hours": "CDT",
+    "Id in UptimaDev": "0HhDN000000AsUo0AK",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "28"
+  },
+  {
+    "Name": "Central",
+    "Time Zone Operating Hours": "CDT",
+    "Id in UptimaDev": "0HhDN000000AsUS0A0",
+    "OperatingHours.Id in UptimaDev": "0OHDN0000004d7t4AA",
+    "Exemplar External Id": "30"
+  }
+]

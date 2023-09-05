@@ -1,0 +1,37 @@
+[
+  {
+    "Parameter": "data-billingAddressOptions",
+    "Type": "JSON-formatted string",
+    "Description": "Elements of this parameter include:\nshow - Boolean indicating whether the name and postal code fields should be shown on the form. The default is true.\nrequired - Boolean indicating whether the name and postal code fields are required to be filled in. The default is true.\n"
+  },
+  {
+    "Parameter": "data-apiLoginID",
+    "Type": "String",
+    "Description": "API Login ID of the merchant. It can be found in the Authorize.net Merchant Interface at Account &gt; Settings &gt; Security Settings &gt; General Security Settings &gt; API Credentials and Keys. Required."
+  },
+  {
+    "Parameter": "data-clientKey",
+    "Type": "String",
+    "Description": "Public Client Key for the merchant. It can be generated in the Authorize.net Merchant Interface at Account &gt; Settings &gt; Security Settings &gt; General Security Settings &gt; Manage Public Client Key. Required."
+  },
+  {
+    "Parameter": "data-acceptUIFormBtnTxt",
+    "Type": "String",
+    "Description": "This is the text that is displayed on the button. The default is Pay."
+  },
+  {
+    "Parameter": "data-acceptUIFormHeaderTxt",
+    "Type": "String",
+    "Description": "This is the text that is displayed on the header of the payment form. The default is to not display any text."
+  },
+  {
+    "Parameter": "data-paymentOptions",
+    "Type": "JSON-formatted string",
+    "Description": "This attribute contains:\nshowCreditCard - Boolean indicating whether the Card Data fields should be shown on the form. The default is true.\nshowBankAccount - Boolean indicating whether the Bank Account Data fields should be shown on the form. The default is false.\n"
+  },
+  {
+    "Parameter": "data-responseHandler",
+    "Type": "responseHandler",
+    "Description": "Specifies the responseHandler JavaScript function."
+  }
+]

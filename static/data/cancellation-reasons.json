@@ -1,0 +1,65 @@
+[
+  {
+    "Name": "Received Assignment in Error",
+    "Id in UptimaDev": "text area",
+    "Exemplar External Id": "1",
+    "Is Status Hold": "0",
+    "Is Status Review": "1"
+  },
+  {
+    "Name": "Insured Declined Services",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "2",
+    "Is Status Hold": "1",
+    "Is Status Review": "0"
+  },
+  {
+    "Name": "Out of Coverage Area",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "3",
+    "Is Status Hold": "0",
+    "Is Status Review": "1"
+  },
+  {
+    "Name": "Overcapacity: No Technician Available",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "4",
+    "Is Status Hold": "0",
+    "Is Status Review": "1"
+  },
+  {
+    "Name": "Carrier / Adjuster Request",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "5",
+    "Is Status Hold": "0",
+    "Is Status Review": "1"
+  },
+  {
+    "Name": "Unsuccessful Attempts to Contact Insured",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "6",
+    "Is Status Hold": "1",
+    "Is Status Review": "0"
+  },
+  {
+    "Name": "Customer Has Own Contractor",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "7",
+    "Is Status Hold": "1",
+    "Is Status Review": "0"
+  },
+  {
+    "Name": "Other",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "8",
+    "Is Status Hold": "1",
+    "Is Status Review": "0"
+  },
+  {
+    "Name": "Cancellation Reason for 2815",
+    "Id in UptimaDev": "&nbsp;",
+    "Exemplar External Id": "15",
+    "Is Status Hold": "1",
+    "Is Status Review": "0"
+  }
+]

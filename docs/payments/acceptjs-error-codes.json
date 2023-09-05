@@ -1,0 +1,116 @@
+[
+  {
+    "Code": "I_WC_01",
+    "Text": "Successful.",
+    "Notes": "The request was processed successfully."
+  },
+  {
+    "Code": "E_WC_01",
+    "Text": "Please include Accept.js library from CDN.",
+    "Notes": "To maintain security and take advantage of updates, load the Accept.js script from the Authorize.net servers."
+  },
+  {
+    "Code": "E_WC_02",
+    "Text": "A HTTPS connection is required.",
+    "Notes": "The page that embeds Accept.js must be served over an HTTPS connection."
+  },
+  {
+    "Code": "E_WC_03",
+    "Text": "Accept.js is not loaded correctly.",
+    "Notes": "Ensure that the Accept.js library is loaded from the Authorize.net servers and that the Accept.js script executed in the browser matches the version stored on the server. This error typically occurs when the script is loaded from a local source, or when the browser or proxy has improperly cached an older version of the script."
+  },
+  {
+    "Code": "E_WC_04",
+    "Text": "Please provide mandatory field to library.",
+    "Notes": "When sending card information, you must include cardNumber and the expiration date (month and year). When sending bank information, you must include accountNumber, routingNumber, nameOnAccount, and accountType."
+  },
+  {
+    "Code": "E_WC_05",
+    "Text": "Please provide valid credit card number.",
+    "Notes": "If card information is provided, cardNumber) must pass a Luhn mod 10 check."
+  },
+  {
+    "Code": "E_WC_06",
+    "Text": "Please provide valid expiration month.",
+    "Notes": "If card information is provided, the expiration month (month) must be a maximum of two digits."
+  },
+  {
+    "Code": "E_WC_07",
+    "Text": "Please provide valid expiration year.",
+    "Notes": "If card information is provided, the expiration year (year) must be in either YY or YYYY format."
+  },
+  {
+    "Code": "E_WC_08",
+    "Text": "If card information is provided, the expiration date (month and year) must be in the future."
+  },
+  {
+    "Code": "E_WC_10",
+    "Text": "Please provide valid apiLoginID.",
+    "Notes": "The value of apiLoginID must be same as the ID that you use to authenticate API requests."
+  },
+  {
+    "Code": "E_WC_13",
+    "Text": "Invalid Fingerprint.",
+    "Notes": "The Accept.js script executed in the browser doesn't match the version stored on the server. This error typically occurs when the browser or proxy has improperly cached an older version of the script."
+  },
+  {
+    "Code": "E_WC_14",
+    "Text": "Accept.js encryption failed.",
+    "Notes": "A general error. Encrypting and transmitting the card data failed, either within the browser or at the Authorize.net servers."
+  },
+  {
+    "Code": "E_WC_15",
+    "Text": "Please provide valid CVV.",
+    "Notes": "The value of cardCode must be three or four digits."
+  },
+  {
+    "Code": "E_WC_16",
+    "Text": "Please provide valid ZIP code.",
+    "Notes": "The postal code (zip) is optional but should be no more than 20 characters if included."
+  },
+  {
+    "Code": "E_WC_17",
+    "Text": "Please provide valid card holder name.",
+    "Notes": "The cardholder name (fullName) is optional but should be no more than 64 characters if included."
+  },
+  {
+    "Code": "E_WC_18",
+    "Text": "Client Key is required.",
+    "Notes": "The value for clientKey can be obtained through the Authorize.net Merchant Interface, by navigating to Account &gt; Settings &gt; Security Settings &gt; General Security Settings &gt; Manage Public Client Key."
+  },
+  {
+    "Code": "E_WC_19",
+    "Text": "An error occurred during processing. Please try again.",
+    "Notes": "Check the value of the API Login ID. The value of apiLoginID must be same as the ID that you use to authenticate API requests. Additionally, an API Login ID generated for the Sandbox environment can only be used with the Sandbox version of the script. An API Login ID generated for the Production environment can only be used with the Production version of the script."
+  },
+  {
+    "Code": "E_WC_21",
+    "Text": "User authentication failed due to invalid authentication values.",
+    "Notes": "Either the API Login ID or Public Client Key, or both values, are incorrect. The value of apiLoginID must be same as the ID that you use to authenticate API requests. The value for clientKey can be obtained through the Authorize.net Merchant Interface, by navigating to Account &gt; Settings &gt; Security Settings &gt; General Security Settings &gt; Manage Public Client Key."
+  },
+  {
+    "Code": "E_WC_23",
+    "Text": "Please provide either card information or bank information.",
+    "Notes": "Either cardData or bankData must be provided, but not both."
+  },
+  {
+    "Code": "E_WC_24",
+    "Text": "Please provide valid account number.",
+    "Notes": "If bank information is provided, accountNumber must be no more than 17 digits."
+  },
+  {
+    "Code": "E_WC_25",
+    "Text": "Please provide valid routing number.",
+    "Notes": "If bank information is provided, routingNumber must be nine digits."
+  },
+  {
+    "Code": "E_WC_26",
+    "Text": "Please provide valid account holder name.",
+    "Notes": "If bank information is provided, nameOnAccount must be no more than 22 characters."
+  },
+  {
+    "Code": "E_WC_27",
+    "Text": "Please provide valid account type.",
+    "Notes": "If bank information is provided, accountType must be one of the following: checking, savings, or businessChecking."
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "SalesForce Field Name": "AccountId",
+    "Field Type": "Reference",
+    "Source Field Name": "SF Account ID",
+    "Description": "ID of the account that is related to the contact."
+  },
+  {
+    "SalesForce Field Name": "ContactId",
+    "Field Type": "Reference",
+    "Source Field Name": "SF Contact ID",
+    "Description": "ID of the contact that is related to the account"
+  },
+  {
+    "SalesForce Field Name": "EndDate",
+    "Field Type": "date",
+    "Source Field Name": "&nbsp;",
+    "Description": "The date a relationship between a contact and account ended. Use with the Start Date to keep a history of the relationship."
+  },
+  {
+    "SalesForce Field Name": "IsActive",
+    "Field Type": "boolean",
+    "Source Field Name": "&nbsp;",
+    "Description": "Indicates whether relationship is active (true) or not (false)."
+  },
+  {
+    "SalesForce Field Name": "IsDirect",
+    "Field Type": "boolean",
+    "Source Field Name": "&nbsp;",
+    "Description": "Indicates whether the account associated with the contact is the contact's primary account (true) or not (false)."
+  },
+  {
+    "SalesForce Field Name": "Roles",
+    "Field Type": "picklist",
+    "Source Field Name": "&nbsp;",
+    "Description": "The contact’s participating role in the account. Values are Business User, Decision Maker, Economic Buyer, Economic Decision Maker, Evaluator, Executive Sponsor, Influencer, Technical Buyer, and Other"
+  },
+  {
+    "SalesForce Field Name": "StartDate",
+    "Field Type": "date",
+    "Source Field Name": "&nbsp;",
+    "Description": "The date a relationship between a contact and account began. Use with the End Date to keep a history of the relationship."
+  }
+]
