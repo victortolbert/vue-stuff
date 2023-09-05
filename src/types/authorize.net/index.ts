@@ -1,4 +1,7 @@
-import type { MerchantAuthentication } from '.'
+export interface MerchantAuthentication {
+  name: string
+  transactionKey: string
+}
 
 export interface CreateCustomerProfileRequest {
   merchantAuthentication: MerchantAuthentication

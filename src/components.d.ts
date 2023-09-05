@@ -117,6 +117,8 @@ declare module 'vue' {
     Tabs: typeof import('./components/content/Tabs.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']
     TheFooter: typeof import('./components/TheFooter.vue')['default']
+    TheHeader: typeof import('./components/TheHeader.vue')['default']
+    TheSidebar: typeof import('./components/TheSidebar.vue')['default']
     TheWelcome: typeof import('./components/TheWelcome.vue')['default']
     Toggle: typeof import('./components/content/Toggle.vue')['default']
     TransitionComponent: typeof import('./components/content/TransitionComponent.vue')['default']
