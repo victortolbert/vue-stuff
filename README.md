@@ -1,3 +1,99 @@
+# Vue Stuff -- View Prototyping Toolkit
+
+design, prototype, and build your next great idea—fast.
+
+## Features
+
+- ✅ Dark mode support
+- ✅ Bundled icons
+- ✅ Fully typed
+- ✅ Continuous Integration (CI) and Continuous Deployment (CD)
+- ✅ Deploy previews
+- ✅ Unit tests
+- ✅ End-to-end tests
+
+## Values
+
+- Gratitude
+- Wisdom
+- Care
+- Courage
+- Grit
+- Celebration
+
+## Gratitude
+
+"Gratitude expressed is joy multiplied."
+
+Chris Carneal, Founder and CEO
+Booster
+
+## Courage
+
+Courage to ask, listen, act.
+
+We all have FEAR. If we don't have fear, we wouldn't have the opportunity to have courage.
+
+Asking for input, truly listening, and ACTING on that requires courage.
+
+Clint Demetriou, Chief People Officer
+
+## Care
+
+Care is empathy. Care is felt.
+
+Chris Carneal, Founder and CEO
+Booster
+
+## Grit
+
+"Tough things we don't want, when viewed through the right lenses, make us better."
+
+Chris Carneal, Founder and CEO
+Booster
+
+## Celebration
+
+We we celebrate we enthusiastically affirm other people, calling out their strengths and accomplishments.
+
+- Render, View Renderer
+- DOMPurify, sanitize HTML
+- CMD K
+- Data fetching ($fetch, useAsyncData, useFetch, fetch, axios)
+- universal javascript unjs
+- testing library
+- sentry
+
+https://nuxt.com/docs/api/composables/use-state
+https://nuxt.com/docs/api/composables/use-async-data
+https://nuxt.com/docs/api/composables/use-fetch
+https://nuxt.com/docs/api/utils/dollarfetch
+https://axios-http.com/docs/intro
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+https://nuxt.com/docs/getting-started/error-handling
+https://vueuse.org/core/useLocalStorage/
+https://vueuse.org/core/useAsyncState/
+https://vueuse.org/core/useMediaControls/
+https://vueuse.org/core/useMemory/
+https://vueuse.org/core/useEyeDropper/
+https://vuelidate-next.netlify.app/guide.html
+https://vuejs.org/guide/built-ins/teleport.html
+https://github.com/ant-design/ant-design-colors#readme
+https://github.com/unjs/theme-colors#readme
+https://dev.azure.com/hancockclaimsconsultants/Exemplar/_workitems/edit/2744
+https://dev.azure.com/hancockclaimsconsultants/Exemplar/_workitems/edit/2607
+https://dev.azure.com/hancockclaimsconsultants/Exemplar/_workitems/edit/2728
+https://dev.azure.com/hancockclaimsconsultants/Exemplar/_workitems/edit/2672
+https://dev.azure.com/hancockclaimsconsultants/Exemplar/_workitems/edit/2666
+
+```vue
+<script setup>
+const store = useStore()
+const { data } = await useAsyncData('user', () => store.fetchUser())
+</script>
+```
+<!-- <script src="https://kit.fontawesome.com/945635a382.js" crossorigin="anonymous"></script> -->
+
 # Vue Stuff
 
 ## Recommended IDE Setup
