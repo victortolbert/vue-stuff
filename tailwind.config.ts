@@ -3,6 +3,7 @@ import headlessUi from '@headlessui/tailwindcss'
 import heroPatterns from 'tailwind-heropatterns'
 import aspectRatio from '@tailwindcss/aspect-ratio'
 import containerQueries from '@tailwindcss/container-queries'
+import typography from '@tailwindcss/typography'
 
 // import tailwindForms from '@tailwindcss/forms'
 import { getIconCollections, iconsPlugin } from '@egoist/tailwindcss-icons'
@@ -178,6 +179,7 @@ export default <Partial<Config>>{
       },
     }),
     containerQueries,
+    typography,
     // tailwindForms({
     //   strategy: 'base', // only generate global styles
     //   // strategy: 'class', // only generate classes
