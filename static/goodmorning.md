@@ -14,7 +14,7 @@ Barka da asuba
 Nyob zoo sawv ntxov
 Jó reggelt -
 Góðan dag
-Ụtụtụ ọma
+Ụtụtụ ọma -
 ullaakkut
 Buongiorno -
 Mwaramutse -

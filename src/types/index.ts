@@ -104,8 +104,6 @@ export interface MerchantAuthentication {
 //   billTo: BillTo
 // }
 
-import type { MerchantAuthentication } from '.'
-
 export interface CreateCustomerProfileRequest {
   merchantAuthentication: MerchantAuthentication
   refId?: string

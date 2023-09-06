@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Polaris"
+  name: "Polaris Experience Cloud"
   text: "Core API Client"
   tagline: Backend-agnostic API client that does what you need
   actions:

@@ -25,7 +25,7 @@ import type { PaymentTransactionVoidRequest } from '~/types/PaymentTransactionVo
 import type { HostedPaymentPageGetRequest } from '~/types/HostedPaymentPageGetRequest'
 import type { HostedProfilePageGetRequest } from '~/types/HostedProfilePageGetRequest'
 
-const countries = ref<{ name: string; id: string }[]>([
+const countries = ref<any>([
   {
     name: '',
     id: '',
@@ -87,9 +87,9 @@ async function logout() {
 }
 
 // Send a user an invite over email
-async function sendInvite(email: string) {
-  const { data, error } = await supabase.auth.api.inviteUserByEmail(email)
-}
+// async function sendInvite(email: string) {
+//   const { data, error } = await supabase.auth.api.inviteUserByEmail(email)
+// }
 
 const url = 'https://apitest.authorize.net/xml/v1/request.api'
 const formPostUrl = 'https://localhost:5080/form-post'
