@@ -397,3 +397,19 @@ export async function CapturePreviouslyAuthorizedAmount(amount: string, refTrans
     },
   })
 }
+
+/**
+ * Create an Apple Pay Transaction
+ *
+ * Use this function to create an Authorize.net payment transaction request
+ * using Apple Pay data in place of card data.
+ *
+ **/
+
+/**
+ * Create a Google Pay Transaction
+ *
+ * Use this function to create an Authorize.net payment transaction request
+ * using Google Pay data in place of card data.
+ *
+ **/

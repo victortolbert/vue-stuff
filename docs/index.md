@@ -3,23 +3,22 @@
 layout: home
 
 hero:
-  name: "Docs"
-  text: "Documentation"
-  tagline: My great project tagline
+  name: "Polaris"
+  text: "Core API Client"
+  tagline: Backend-agnostic API client that does what you need
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: Learn more
       link: /markdown-examples
     - theme: alt
       text: API Examples
       link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Payment Transactions
+    details: API for accepting transactions.
+  - title: Accept Suite
+    details: Libraries and forms for sites and apps. Apple Pay and Android Pay.
+  - title: Customer Profiles
+    details: Store customers' sensitive data for quick retrieval on return purchases.
 ---
-

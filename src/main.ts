@@ -4,7 +4,7 @@ import { ViteSSG } from 'vite-ssg'
 import Preview from 'vite-plugin-vue-component-preview/client'
 import App from './App.vue'
 
-import { worker } from '~/mocks/browser'
+// import { worker } from '~/mocks/browser'
 import type { UserModule } from '~/types'
 
 import routes from '~pages'
@@ -26,4 +26,4 @@ export const createApp: any = ViteSSG(App, { routes, base: import.meta.env.BASE_
 // )
 
 // if (import.meta.env.NODE_ENV === 'development')
-worker.start()
+// worker.start()
