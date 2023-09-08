@@ -3,13 +3,13 @@
 layout: home
 
 hero:
-  name: "Polaris Experience Cloud"
-  text: "Core API Client"
-  tagline: Backend-agnostic API client that does what you need
+  name: "Polaris Cloud"
+  text: ""
+  tagline: ""
   actions:
     - theme: brand
       text: Learn more
-      link: /markdown-examples
+      link: /guide
     - theme: alt
       text: API Examples
       link: /api-examples

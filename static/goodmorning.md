@@ -15,6 +15,6 @@ Nyob zoo sawv ntxov
 Jó reggelt -
 Góðan dag
 Ụtụtụ ọma -
-ullaakkut
+ullaakkut -
 Buongiorno -
 Mwaramutse -
