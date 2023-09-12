@@ -10,7 +10,7 @@ Hyvää huomenta -
 Bos días
 Amakya amalungi -
 Bonjou
-Barka da asuba
+Barka da asuba -
 Nyob zoo sawv ntxov -
 Jó reggelt -
 Góðan dag

@@ -113,6 +113,8 @@ export default <Partial<Config>>{
         'wiggle': 'wiggle 1s infinite',
         'flash-code': 'flash-code 1s forwards',
         'flash-code-slow': 'flash-code 2s forwards',
+        'slideDown': 'slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+        'slideUp': 'slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)',
       },
       keyframes: {
         'flash-code': {
