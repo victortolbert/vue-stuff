@@ -1,3 +1,0 @@
-# Adjuster Profile
-
-## Workflow

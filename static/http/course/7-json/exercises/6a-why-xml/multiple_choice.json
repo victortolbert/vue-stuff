@@ -1,9 +1,0 @@
-{
-  "question": "Which can be used to send data from the browser to a web server?",
-  "answers": [
-    "Both",
-    "JSON",
-    "XML",
-    "Neither"
-  ]
-}

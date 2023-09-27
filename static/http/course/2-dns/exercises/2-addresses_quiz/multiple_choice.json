@@ -1,9 +1,0 @@
-{
-  "question": "Which is a human readable label that converts to an IP address?",
-  "answers": [
-    "A domain name",
-    "The HTTP Protocol",
-    "IP address",
-    "DNS"
-  ]
-}

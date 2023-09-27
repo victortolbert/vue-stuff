@@ -1,9 +1,0 @@
-{
-  "question": "Which would be considered I/O?",
-  "answers": [
-    "An HTTP request",
-    "A function that adds 2 numbers together",
-    "A really slow algorithm",
-    "The JavaScript programming language"
-  ]
-}
