@@ -23,6 +23,7 @@ import Markdown from 'unplugin-vue-markdown/vite'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
 import mkcert from 'vite-plugin-mkcert'
+import RadixVueResolver from 'radix-vue/resolver'
 
 // import WebfontDownload from 'vite-plugin-webfont-dl'
 
@@ -117,6 +118,9 @@ export default ({ mode }: any) => {
         directoryAsNamespace: true,
         collapseSamePrefixes: true,
         globalNamespaces: ['app', 'content', 'forms', 'icons', 'logos'],
+        resolvers: [
+          RadixVueResolver(),
+        ],
         customLoaderMatcher: path => path.endsWith('.md'),
       }),
 

@@ -86,6 +86,7 @@ declare module 'vue' {
     LogoUxlab: typeof import('./components/logos/LogoUxlab.vue')['default']
     Menu: typeof import('./components/Menu.vue')['default']
     Modal: typeof import('./components/content/Modal.vue')['default']
+    ModalConfirm: typeof import('./components/ModalConfirm.vue')['default']
     Movies: typeof import('./components/Movies.vue')['default']
     MyComponent: typeof import('./components/MyComponent.vue')['default']
     NewsletterForm: typeof import('./components/app/forms/NewsletterForm.vue')['default']
