@@ -40,3 +40,6 @@ Ma'lob Ja'atskab K'iin -
 Xayrli tong -
 Хәерле иртә - Tartar
 Maayong buntag! - - 9/26
+- 9/27 -
+- 9/28 - Mangwanani akanaka (Shona)
+- 9/29 - 좋은 아침이에요 (Korean)
