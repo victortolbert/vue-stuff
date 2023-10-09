@@ -42,4 +42,9 @@ Xayrli tong -
 Maayong buntag! - - 9/26
 - 9/27 -
 - 9/28 - Mangwanani akanaka (Shona)
-- 9/29 - 좋은 아침이에요 (Korean)
+- fri, 9/29 - 좋은 아침이에요 (Korean)
+- mon, - おはよう Japanese
+- tues, - 早上好 Chinese
+- weds, - Hebrew
+- thurs, - ਸ਼ੁਭ ਸਵੇਰ punjabi
+- fri, - arabic
